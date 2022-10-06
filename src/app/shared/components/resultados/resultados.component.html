@@ -1,0 +1,15 @@
+<div class="ion-text-center">
+  <div id="resultados-label">
+    {{tituloResultado | translate}}
+  </div>
+  <div class="resultados-value">
+    <span *ngIf="resultado !== 0;else noData">
+      {{ resultado | number}}
+    </span>
+    <ng-template #noData>
+      <span style="color: red">
+        {{ 'Faltan datos' | translate}}
+      </span>
+    </ng-template>
+  </div>
+</div>

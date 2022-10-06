@@ -1,0 +1,40 @@
+
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12"><ion-label position="stacked">{{'Presencia de cortafuegos transitables 4x4' | translate}}</ion-label>
+      <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #cortafuego [value]="pesoCortafuego" (ionChange)="updateCortafuego(cortafuego.value)">
+        <ion-select-option text-wrap value="1">{{'Cortafuegos con anchura igual o superior a 50 m y área preventiva colindante' |
+          translate}}</ion-select-option>
+        <ion-select-option text-wrap value="0.8">{{'Cortafuegos con anchura superior a 50 m' | translate}}</ion-select-option>
+        <ion-select-option value="0.7">{{'Cortafuegos con anchura inferior a 50 m y área preventiva colindante' | translate}}
+        </ion-select-option>
+        <ion-select-option value="0.6">{{'Cortafuegos con anchura inferior a 50 m' | translate}}</ion-select-option>
+      </ion-select></ion-col>
+    <ion-col size="12"><ion-label position="stacked">{{'Distancia al vial' | translate}} (m)</ion-label>
+      <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distancia [value]="pesoDistancia" (ionChange)="updateDistancia(distancia.value)">
+        <ion-select-option text-wrap value="10">&lt;100</ion-select-option>
+        <ion-select-option value="9">100-200</ion-select-option>
+        <ion-select-option value="8">200-300</ion-select-option>
+        <ion-select-option value="5">300-500</ion-select-option>
+        <ion-select-option value="3">>500</ion-select-option>
+      </ion-select></ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="prev()">
+          <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="next()" [disabled]="movilidad === 0">
+          <ion-icon slot="icon-only" name="caret-forward-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <resultados [tituloResultado]="'Movilidad'" [resultado]="movilidad"></resultados>
+  </ion-toolbar>
+</ion-footer>

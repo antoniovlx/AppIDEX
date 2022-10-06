@@ -1,0 +1,46 @@
+<ion-app>
+  <ion-split-pane contentId="main-content" [when]="false">
+    <ion-menu #sidebar contentId="main-content" type="overlay" swipeGesture="false">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>
+            <ion-thumbnail style="margin-right: 3px">
+              <img class="logo" src="./assets/img/wildfire.png" />
+            </ion-thumbnail> AppIDEX
+          </ion-list-header>
+          <ion-note>{{'DESCRIPCION APP' | translate}}</ion-note>
+
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item [routerLink]="p.url" expand="block" lines="none" detail="false" routerLinkActive="selected">
+              <ion-thumbnail slot="start" class="option">
+                <img [src]="p.img">
+              </ion-thumbnail>
+              <ion-label>{{p.title | translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <img src="./assets/img/labif.png">
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="scrollToTop()">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" style="margin-top:-4px">
+    <ion-fab-button color="light" style="width: 45px; height: 45px">
+      <ion-icon name="language-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button color="light" (click)="changeLang('en')">
+        <ion-label>EN</ion-label>
+      </ion-fab-button>
+      <ion-fab-button color="light" (click)="changeLang('es')">
+        <ion-label>ES</ion-label>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <jeep-sqlite></jeep-sqlite>
+</ion-app>

@@ -1,0 +1,104 @@
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+#container {
+  text-align: center;
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+
+.option img {
+  margin-top: 30px;
+  width: 30%;
+  border-radius: 50%;
+}
+
+.descripcion {
+  font-size: 13px !important;
+  white-space: initial;
+}
+
+.option {
+  //margin-top: 25px;
+  cursor: pointer;
+  min-height: 300px;
+  position: relative;
+}
+
+.option:hover .description {
+  color: black;
+}
+
+.option:hover img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.background-description {
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 480;
+  margin-bottom: 10px;
+}
+
+.background-description {
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 480;
+  margin-bottom: 10px;
+}
+
+.background-main-title {
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: 2px solid #b4b45c;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.button-card-help {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.disabled{
+  opacity: 0.6;
+}
+
+ion-tab-bar{
+  box-shadow: 0px 15px 10px -15px #111;
+}
+
+ion-tab-bar ion-label{
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+ion-tab-button[aria-selected="true"]{
+  background-color: var(--ion-color-secondary);
+}
+

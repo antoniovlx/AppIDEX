@@ -1,0 +1,56 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-label position="stacked">{{'¿Cómo cree que se comporta el suelo frente a los deslizamientos?' | translate}}
+      </ion-label>
+      <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #comportamientoSelect [value]="comportamiento"
+        (ionChange)="updateComportamiento(comportamientoSelect.value)">
+        <ion-select-option value="1">{{ 'Estable' | translate}}</ion-select-option>
+        <ion-select-option value="0.9">{{ 'Parcialmente estable' | translate}}</ion-select-option>
+        <ion-select-option value="0.8">{{ 'Suelto' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="12">
+      <ion-label position="stacked">{{'¿Dispone el área de senderos o cortafuegos no transitables?' | translate}}
+      </ion-label>
+      <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #areasSelect [value]="areasTransitables"
+        (ionChange)="updateAreasTransitables(areasSelect.value)">
+        <ion-select-option value="0">{{ 'NO' | translate}}</ion-select-option>
+        <ion-select-option value="1">{{ 'Varios cortafuegos' | translate}}</ion-select-option>
+        <ion-select-option value="0.8">{{ 'Un cortafuegos' | translate}}</ion-select-option>
+        <ion-select-option value="0.6">{{ 'Varios senderos' | translate}}</ion-select-option>
+        <ion-select-option value="0.4">{{ 'Un sendero' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="12">
+      <ion-label position="stacked">{{'Distancia al vial' | translate}} (m)</ion-label>
+      <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaVialSelect [value]="distanciaVial"
+        (ionChange)="updateDistanciaVial(distanciaVialSelect.value)">
+        <ion-select-option value="10">&lt;50</ion-select-option>
+        <ion-select-option value="9">50-100</ion-select-option>
+        <ion-select-option value="7">150-200</ion-select-option>
+        <ion-select-option value="4">200-350</ion-select-option>
+        <ion-select-option value="2">>350</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="prev()">
+          <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="next()"
+          [disabled]="penetrabilidad === 0">
+          <ion-icon slot="icon-only" name="caret-forward-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <resultados [tituloResultado]="'Penetrabilidad'" [resultado]="penetrabilidad"></resultados>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,27 @@
+
+
+.option img{
+      /* max-width: 100%; */
+      width: 80%;
+      height: 80%;
+      border: 0;
+      /* width: 26px; */
+      /* height: 26px; */
+      margin-top: 4px;
+      margin-right: 5px;
+      /* margin-left: -10px; */
+      border-radius: 50%;
+}
+
+ion-breadcrumb{
+  color: var(--ion-color-step-600, #677483);
+}
+
+ion-breadcrumbs{
+  margin-left: -15px;
+}
+
+ion-button{
+  padding-left: 1px;
+  margin-right: -15px;
+}

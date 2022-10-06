@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="img-header"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Tipo modelo' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #tipoModeloSelect [value]="tipoModeloSelected"
+            (ionChange)="updateTipoModelo(tipoModeloSelect.value)">
+            <ion-select-option value="behave">Behave</ion-select-option>
+            <ion-select-option value="uco40">UCO40</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Modelo' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #modelosSelect [value]="modeloSelected"
+            (ionChange)="updateModelo(modelosSelect.value)" [disabled]="tipoModeloSelect.value === undefined">
+            <ion-select-option *ngFor="let modelo of modelos" [value]="modelo">
+              {{modelo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Especie' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #especieSelect [value]="especieSelected"
+            (ionChange)="updateEspecie(especieSelect.value)">
+            <ion-select-option *ngFor="let especie of variables.especies" [value]="especie">
+              {{especie}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Pendiente' | translate}} (%)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #pendientesSelect [value]="pendienteSelected"
+            (ionChange)="updatePendientes(pendientesSelect.value)">
+            <ion-select-option *ngFor="let pendiente of pendientes" [value]="pendiente.pendiente">
+              {{pendiente.pendiente}} %
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Exposición' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #exposicionesSelect [value]="exposicionSelected"
+            (ionChange)="updateExposicion(exposicionesSelect.value)">
+            <ion-select-option *ngFor="let exposicion of variables.exposiciones" [value]="exposicion.peso">
+              {{exposicion.valor}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="6">
+        <ion-item>
+          <ion-label position="stacked">{{'Densidad copa' | translate}} (kg/m3)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #densidadCopaSelect [value]="densidadPiesSelected"
+            (ionChange)="updateDensidadCopa(densidadCopaSelect.value)">
+            <ion-select-option *ngFor="let densidad of variables.densidadCopa" [value]="densidad">
+              {{densidad}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Humedad combustible fino muerto' | translate}} (&#60;6mm) (%)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #humedadSelected [value]="humedadFinoMuertoSelected"
+            (ionChange)="updateHumedadFinoMuerto(humedadSelected.value)">
+            <ion-select-option *ngFor="let humedad of variables.humedadFinoMuerto" [value]="humedad">
+              {{humedad}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Velocidad viento llama' | translate}} (km/h)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #velocidadVientoLlamaSelect
+            [value]="velocidadVientoLlamaSelected"
+            (ionChange)="updateVelocidadVientoLlama(velocidadVientoLlamaSelect.value)">
+            <ion-select-option *ngFor="let velocidad of variables.velocidadVientoLlama" [value]="velocidad">
+              {{velocidad}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Velocidad del viento a 10m' | translate}} (km/h)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #velocidadViento10metrosSelect
+            [value]="velocidadViento10metrosSelected"
+            (ionChange)="updateVelocidadViento10metros(velocidadViento10metrosSelect.value)">
+            <ion-select-option *ngFor="let velocidad of variables.velocidadVientoLlama" [value]="velocidad">
+              {{velocidad}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Fracción copa cubierta' | translate}} (kg/m3)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #franccionCopaSelect
+            [value]="fraccionCopaCubiertaSelected" (ionChange)="updateFraccionCopa(franccionCopaSelect.value)">
+            <ion-select-option *ngFor="let fraccion of variables.fraccionCopa" [value]="fraccion">
+              {{fraccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Abertura laderas' | translate}} (°)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #aberturaLaderasSelect
+            [value]="aberturaLaderasSelected" (ionChange)="updateAberturaLaderas(aberturaLaderasSelect.value)">
+            <ion-select-option *ngFor="let fraccion of variables.fraccionCopa" [value]="fraccion">
+              {{fraccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Pendiente cauce' | translate}} (°)</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #pendienteCauceSelect
+            [value]="pendienteCauceSelected" (ionChange)="updatePendienteCauce(pendienteCauceSelect.value)">
+            <ion-select-option *ngFor="let fraccion of variables.fraccionCopa" [value]="fraccion">
+              {{fraccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Longitud copa' | translate}} (m) </ion-label>
+          <ion-input type="number" #longitudCopaInput (ionInput)="updateLongitudCopa(longitudCopaInput.value)"
+            [(ngModel)]="longitudCopaSelected"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'Diámetro tronco' | translate}} (cm)</ion-label>
+          <ion-input type="number" #diametroTroncoInput
+            (ionInput)="updateDiametroTronco(diametroTroncoInput.value)"
+            [(ngModel)]="diametroTroncoSelected"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

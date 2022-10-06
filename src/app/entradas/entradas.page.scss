@@ -1,0 +1,29 @@
+ion-select {
+    font-size: 16px;
+}
+
+ion-label {
+    font-size: 18px !important;
+}
+
+#img-header{
+    background-image: url("../../assets/header_entradas.jpg");
+    height: 80px;
+    background-repeat: repeat-x;
+}
+
+.center {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+ion-grid{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+    margin-top: 20px;
+}

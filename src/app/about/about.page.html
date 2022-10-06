@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secundary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-title>
+        <breadcrumb [title]="'Créditos'" [imagePath]="'./assets/img/question.png'"></breadcrumb>
+      </ion-title>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="maincontent">
+      <ion-grid fixed style="margin-top:60px">
+        <ion-row>
+          <ion-col size="12" class="ion-text-justify">
+            <ion-note>Copyright &copy; {{"2022 Laboratorio de Defensa contra Incendios Forestales y Manejo del Fuego de la Universidad de Córdoba, España (LABIF-UCO)" | translate}}</ion-note>
+
+            <p>{{ 'bienvenida_creditos' | translate }}
+            </p>
+
+            <p>{{ 'descripcion_creditos' | translate}}</p>
+
+            <div>
+              <span>{{ 'Este programa ha sido desarrollado en el marco financiero del proyecto Interreg-Poctep:' | translate}}</span>
+            </div>
+            <ul>
+              <li>"{{ 'Fortalecimiento de los sistemas transfronterizos de prevención y extinción de incendios forestales y mejora de los recursos para la generación de empleo rural post Covid-19 (FIREPOCTEP)' | translate }}"</li>
+              <li>"{{ 'Centro Ibérico para la Investigación y Lucha contra los Incendios Forestales (CILIFO)' | translate }}"</li>
+            </ul>
+
+            <ion-row>
+              <ion-col size="12"> <img style="margin-top: 25px; margin-bottom: 15px; margin-left: 20px; width: 350px;"
+                  src="./assets/img/interreg.png" alt="interreg">
+                <img src="./assets/img/firepoctep.jpg" alt="firepoctep"
+                  style="margin-top: 15px; margin-left: 30px; width: 100px; margin-bottom:20px;">
+                <img src="./assets/img/cilifo.png" alt="cilifo"
+                  style="margin-top: 15px; margin-left: 20px; width: 150px; margin-bottom:20px;">
+              </ion-col>
+            </ion-row>
+
+            <p>{{ 'direccion_proyecto_creditos' | translate}}
+            </p>
+
+            <h4>{{ 'Dirección de contacto:' | translate}}</h4>
+
+            <ion-row>
+              <ion-col sizeMd="8" sizeXs="12">
+                {{ 'Universidad de Córdoba' | translate }}<br>
+                {{'Departamento de Ingeniería Forestal' | translate}}<br>
+                {{'Laboratorio y Unidad Docente de Defensa contra Incendios Forestales' | translate}}<br>
+                {{'E.T.S. Ingenieros Agrónomos y de Montes' | translate}}<br>
+                {{'Edificio Leonardo da Vinci. Campus de Rabanales' | translate}}<br>
+                {{'14071 Córdoba' | translate}}<br>
+                e-mail: <a href="mailto:labif@uco.es">labif@uco.es</a><br>
+                web: <a
+                  href="http://franciscorodriguezysilva.com/">http://franciscorodriguezysilva.com/</a>
+              </ion-col>
+              <ion-col sizeMd="4" sizeXs="12">
+                <img style="padding-left: 4px; padding-top: 10px;" src="./assets/img/logolabif.jpg" alt="labif" width="200">
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content>

@@ -1,0 +1,24 @@
+{
+  "appId": "io.labif.econosinami",
+  "appName": "econosinami",
+  "webDir": "www",
+  "bundledWebRuntime": "false",
+  "electron":{
+    "splashScreenEnabled": true,
+    "splashScreenImageName": "splash.jpg"
+  },
+  "plugins": {
+    "CapacitorSQLite": {
+      "iosDatabaseLocation": "Library/CapacitorDatabase",
+      "iosIsEncryption": true,
+      "iosKeychainPrefix": "angular-sqlite-app-starter",
+      "iosBiometric": {
+        "biometricAuth": false,
+        "biometricTitle" : "Biometric login for capacitor sqlite"
+      },
+      "electronWindowsLocation": "databases",
+      "electronMacLocation": "/Volumes/Development_Lacie/Development/EconosinamiDatabases",
+      "electronLinuxLocation": "databases"
+    }
+  }
+}

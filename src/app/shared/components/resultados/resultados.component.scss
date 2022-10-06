@@ -1,0 +1,23 @@
+#resultados-label{
+    background-color: #f7f7d3;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 20px !important;
+    font-family: var(--ion-font-family, inherit);
+    font-weight: 500;
+    line-height: 1.2;
+    border: 2px solid var(--ion-color-step-150, #d7d8da);
+    border-radius: 12px;
+}
+
+.resultados-value{
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 4px;
+    font-size: 20px !important;
+    font-family: var(--ion-font-family, inherit);
+    font-weight: 500;
+    line-height: 1.2;
+    border: 2px solid var(--ion-color-step-150, #d7d8da);
+}

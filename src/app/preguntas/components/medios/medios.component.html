@@ -1,0 +1,59 @@
+
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-label position="stacked">{{'Distancia al punto de agua para helicópteros más cercano'
+        | translate}} (m)</ion-label>
+      <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaHelicopterosSelect [value]="distanciaHelicopteros" 
+      (ionChange)="updateDistanciaHelicopteros(distanciaHelicopterosSelect.value)">
+        <ion-select-option value="10">&lt;1</ion-select-option>
+        <ion-select-option value="9">1-10</ion-select-option>
+        <ion-select-option value="8">10-20</ion-select-option>
+        <ion-select-option value="5">20-40</ion-select-option>
+        <ion-select-option value="3">40-60</ion-select-option>
+        <ion-select-option value="1">50-60</ion-select-option>
+      </ion-select></ion-col>
+    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la pista para carga de aviones de carga en tierra más cercana' | translate}} (m)</ion-label>
+      <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaAvionesCargaSelect [value]="distanciaAvionesCarga" (ionChange)="updateDistanciaAvionesCarga(distanciaAvionesCargaSelect.value)">
+        <ion-select-option value="10">&lt;15</ion-select-option>
+        <ion-select-option value="9">15-60</ion-select-option>
+        <ion-select-option value="8">60-120</ion-select-option>
+        <ion-select-option value="5">120-250</ion-select-option>
+        <ion-select-option value="3">250-400</ion-select-option>
+        <ion-select-option value="1">>400</ion-select-option>
+      </ion-select>
+      </ion-col>
+    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la lámina de agua (emblase o playa) más cercana para carga de aviones anfibio' | translate}} (m)</ion-label>
+      <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaAvionesAnfibiosSelect [value]="distanciaAvionesAnfibios" (ionChange)="updateDistanciaAvionesAnfibios(distanciaAvionesAnfibiosSelect.value)">
+        <ion-select-option value="10">25</ion-select-option>
+        <ion-select-option value="9">25-50</ion-select-option>
+        <ion-select-option value="7">50-100</ion-select-option>
+        <ion-select-option value="4">100-200</ion-select-option>
+        <ion-select-option value="1">>200</ion-select-option>
+      </ion-select>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="prev()">
+          <ion-icon slot="icon-only" name="caret-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="next()" [disabled]="medios === 0">
+          <ion-icon slot="icon-only" name="caret-forward-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <resultados [tituloResultado]="'Medios aéreos'" [resultado]="medios"></resultados>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+

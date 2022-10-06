@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secundary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <breadcrumb [title]="'IDEX'" [imagePath]="'./assets/img/resources.png'"></breadcrumb>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid fixed="true">
+      <ion-tabs>
+        <ion-tab-bar slot="top">
+          <ion-tab-button tab="entradas">
+            <ion-icon name="pencil" size="large"></ion-icon>
+            <ion-label>{{'Entorno' | translate}}</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="preguntas">
+            <ion-icon name="help-circle-outline" size="large"></ion-icon>
+            <ion-label>{{'Extinción' | translate}}</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="resultados">
+            <ion-icon name="document-text-outline" size="large"></ion-icon>
+            <ion-label>{{'Resultados' | translate}}</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-grid>
+  </div>
+</ion-content>

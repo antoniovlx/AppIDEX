@@ -1,0 +1,7 @@
+{
+  "name": "econosinami",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

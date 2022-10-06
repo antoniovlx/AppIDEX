@@ -1,0 +1,15 @@
+{
+  "Configuración": "Setup",
+  "Debe seleccionar al menos una zona, una opción y un grupo de datos de comportamiento del fuego": "Debe seleccionar al menos una zona, una opción y un grupo de datos de comportamiento del fuego",
+  "Descripcion configuracion": "Setup software parameters ",
+  "Descripcion ejecucion": "Run a simulation of extinction operations",
+  "Descripcion medios de combate": "Characteristics that identify the firefigthings available to carry out extinction operations",
+  "Descripcion recursos naturales": "Characteristics of the resources that can be affected by the development of fires",
+  "Descripcion resultados": "Generate a simulation report y gráfico de costo - valor neto de los recursos",
+  "Descripcion zonas de analisis": "Definition of characteristics of the region or territory to study",
+  "Ejecución": "Run",
+  "Medios de combate": "Firefighting means",
+  "Recursos naturales": "Natural resources",
+  "Resultados": "Reports",
+  "Zonas de analisis": "Analysis zones"
+}

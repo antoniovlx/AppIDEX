@@ -1,0 +1,28 @@
+{
+  "appId": "econosinami2.0",
+  "directories": {
+    "buildResources": "resources"
+  },
+  "files": [
+    "assets/**/*",
+    "build/**/*",
+    "capacitor.config.*",
+    "app/**/*",
+    "src/assets/databases/**/*"
+
+  ],
+  "publish": {
+    "provider": "github"
+  },
+  "nsis": {
+    "allowElevation": true,
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "win": {
+    "target": [
+      "nsis"
+    ],
+    "icon": "assets/icon.ico"
+  }
+}

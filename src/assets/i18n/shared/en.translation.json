@@ -1,0 +1,44 @@
+{
+  "2022 Laboratorio de Defensa contra Incendios Forestales y Manejo del Fuego de la Universidad de Córdoba, España (LABIF-UCO)": "2022 Forest Fire Laboratory at University of Cordoba, Spain (LABIF-UCO)",
+  "Antes de continuar debe introducir:": "You must introduce data before continue:",
+  "Aviso": "Warning",
+  "Ayuda": "Help",
+  "Centro Ibérico para la Investigación y Lucha contra los Incendios Forestales (CILIFO)": "Iberian Centre for Research and Forest Firefighting (CILIFO)",
+  "Cerrar": "Close",
+  "Confirmación": "Confirmation",
+  "Créditos": "About",
+  "DESCRIPCION APP": "Extinguishing Difficulty in Fire Extinguishing Index",
+  "Departamento de Ingeniería Forestal": "Forest Engineering Department",
+  "Dirección de contacto:": "Address contact:",
+  "E": {
+    "T": {
+      "S": {
+        " Ingenieros Agrónomos y de Montes": " School of Agricultural and Forestry Engineering (ETSIAM)"
+      }
+    }
+  },
+  "Edificio Leonardo da Vinci": {
+    " Campus de Rabanales": "Leonardo da Vinci building. Campus of Rabanales"
+  },
+  "Español": "Spanish",
+  "Este programa ha sido desarrollado en el marco financiero del proyecto Interreg-Poctep:": "Developed in the financial framework of Interreg-Poctep project:",
+  "Fortalecimiento de los sistemas transfronterizos de prevención y extinción de incendios forestales y mejora de los recursos para la generación de empleo rural post Covid-19 (FIREPOCTEP)": "Strengthening cross-border systems for preventing and extinguishing forest fires and improving resources for rural employment creation post-Covid-19  (FIREPOCTEP)",
+  "Idioma": "Language",
+  "Informes": "Reports",
+  "Inglés": "English",
+  "Laboratorio y Unidad Docente de Defensa contra Incendios Forestales": "Forest Fires laboratory (LABIF-UCO)",
+  "Maximizar": "Maximize",
+  "Medios de combate": "Firefighting means",
+  "Mensaje borrado": "Elements selected has been deleted correctly",
+  "Mensaje guardado": "Element has been saved correctly",
+  "Minimizar": "Minimize",
+  "No": "No ",
+  "Si": "Yes",
+  "Universidad de Córdoba": "University of Córdoba",
+  "Zonas de análisis": "Analysis zones",
+  "bienvenida_creditos": "Welcome to \"ECONOSINAMI version 2.0\" tool.  This app form part of modular structure of SINAMI model, developed for the economic evaluation of wildfires defense programs.",
+  "descripcion_creditos": "ECONOSINAMI is present as a tool for a comparative study of options for planning strategies,  based on marginal analysis techniques like defense programmes, natural resources valoration, the performance of extinguishing media, the historical background of forest fires in the study area and characterization of fire behavior.",
+  "direccion_proyecto_creditos": "The development of EconoSINAMI tool has been leadered by Professor Dr. Fco. Rodríguez and Silva and researcher Dr. Juan Ramón Molina Martinez, from Forest Fire Laboratory of Forest Engineering Department,  University of Córdoba, Spain. The computer program has been developed by Antonio Vida, Software Engineer.",
+  "lugares representativos en el Zamif": "Representative locations in the Zamif",
+  "¿Desea CONTINUAR y eliminar los elementos seleccionados?": "¿Do you want to CONTINUE and delete the elements selected?"
+}
