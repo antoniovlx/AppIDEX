@@ -19,7 +19,7 @@ export class AccesibilidadComponent implements OnInit {
   @Output()
   onInputChange: EventEmitter<number> = new EventEmitter();
 
-  constructor(private uiService: UiService) { }
+  constructor() { }
 
   ngOnInit() { }
 

@@ -9,7 +9,10 @@
     <ng-template #noData>
       <span style="color: red">
         {{ 'Faltan datos' | translate}}
-      </span>
+      </span> 
+      <div id="warning-message" *ngIf="textWarningData !== undefined;" style="color: red">
+        ({{ textWarningData | translate}})
+      </div>
     </ng-template>
   </div>
 </div>

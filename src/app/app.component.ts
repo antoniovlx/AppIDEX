@@ -39,9 +39,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     const lang = localStorage.getItem('lang');
     if (lang !== null) {
       localStorage.setItem('lang', lang);
-      translate.setDefaultLang(lang);
+      translate.use(lang);
     } else {
-      translate.setDefaultLang('es');
+      translate.use(lang);
       localStorage.setItem('lang', 'es');
     }
 
@@ -69,11 +69,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   get appPages() {
     return appPages;
   }
-
-  get base64Logo() {
-    return this.util.getBase64Logo();
-  }
-
 
   @HostListener('window:beforeunload', ['$event'])
   onLoadHandler(event: Event) {

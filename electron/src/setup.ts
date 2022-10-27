@@ -102,7 +102,7 @@ export class ElectronCapacitorApp {
 
   async init(): Promise<void> {
     const icon = nativeImage.createFromPath(
-      join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png')
+      join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'icon.ico' : 'appIcon.png')
     );
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 1000,
@@ -116,7 +116,9 @@ export class ElectronCapacitorApp {
       x: this.mainWindowState.x,
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
-      height: this.mainWindowState.height,
+      height: this.mainWindowState.height, 
+      minHeight: 200,
+      minWidth: 200,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: true,
@@ -268,8 +270,8 @@ export function setupContentSecurityPolicy(customScheme: string): void {
         ...details.responseHeaders,
         'Content-Security-Policy': [
           electronIsDev
-            ? `default-src ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:; font-src 'self' https://fonts.gstatic.com`
-            : `default-src ${customScheme}://* 'unsafe-inline' data:; font-src 'self' https://fonts.gstatic.com`,
+            ? `default-src ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:; font-src 'self' data: https://fonts.gstatic.com;`
+            : `default-src ${customScheme}://* 'unsafe-inline' data:; font-src 'self' data: https://fonts.gstatic.com;`,
         ],
       },
     });

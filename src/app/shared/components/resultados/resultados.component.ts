@@ -13,6 +13,9 @@ export class ResultadosComponent implements OnInit {
   @Input()
   resultado: number
 
+  @Input()
+  textWarningData: string
+
   constructor() { }
 
   ngOnInit() {

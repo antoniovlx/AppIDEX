@@ -1,6 +1,6 @@
 {
-	"appId": "io.labif.econosinami",
-	"appName": "econosinami",
+	"appId": "io.labif.appidex",
+	"appName": "appidex",
 	"webDir": "www",
 	"bundledWebRuntime": "false",
 	"electron": {
@@ -17,7 +17,7 @@
 				"biometricTitle": "Biometric login for capacitor sqlite"
 			},
 			"electronWindowsLocation": "databases",
-			"electronMacLocation": "/Volumes/Development_Lacie/Development/EconosinamiDatabases",
+			"electronMacLocation": "/Volumes/Development_Lacie/Development/AppIDEXDatabases",
 			"electronLinuxLocation": "databases"
 		}
 	}

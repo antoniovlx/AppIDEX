@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <div id="img-header"></div>
@@ -7,79 +6,82 @@
 
 <ion-content>
   <ion-grid fixed>
-    <titulo-apartado [imagePath]="'./assets/img/medios.png'" [titulo]="'Oportunidad de extinción'">
+    <ion-button id="button-download" title="Exportar csv" expand="block" (click)="downloadCsv()" expand="block" shape="round" [disabled]="indice.idex === 0">
+      <ion-icon name="download"></ion-icon>
+    </ion-button>
+    <titulo-apartado [imagePath]="'./assets/img/medios.png'" [titulo]="'oportunidadExtincion'">
     </titulo-apartado>
     <ion-row>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Accesibilidad' | translate}}</ion-label>
+          <ion-label position="stacked">{{'accesibilidad' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.accesibilidad" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Movilidad' | translate}}</ion-label>
+          <ion-label position="stacked">{{'movilidad' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.movilidad" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Apertura' | translate}}</ion-label>
+          <ion-label position="stacked">{{'apertura' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.apertura" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
       <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Penetrabilidad' | translate}}</ion-label>
+          <ion-label position="stacked">{{'penetrabilidad' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.penetrabilidad" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Medios Aéreos' | translate}}</ion-label>
+          <ion-label position="stacked">{{'mediosAereos' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.mediosAereos" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="12" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Índice Oportunidad de Extinción' | translate}} (1-50)</ion-label>
+          <ion-label position="stacked">{{'oportunidadExtincion' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.oportunidadExtincion" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <titulo-apartado [imagePath]="'./assets/img/comportamiento_fuego.png'" [titulo]="'Comportamiento energético'">
+    <titulo-apartado [imagePath]="'./assets/img/comportamiento_fuego.png'" [titulo]="'comportamientoEnergetico'">
     </titulo-apartado>
     <ion-row>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'ICE Superficial' | translate}}</ion-label>
+          <ion-label position="stacked">{{'iceSuperficial' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.iceSuperficial" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="6" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'ICE Copas' | translate}}</ion-label>
+          <ion-label position="stacked">{{'iceCopas' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.iceCopas" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="4" sizeMd="4" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'ICE Eruptivo' | translate}}</ion-label>
+          <ion-label position="stacked">{{'iceEruptivo' | translate}}</ion-label>
           <ion-input type="number" [(ngModel)]="indice.iceEruptivo" [readonly]="true">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="12" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'Índice de Comportamiento Energético' | translate}}
+          <ion-label position="stacked">{{'comportamientoEnergetico' | translate}}
           </ion-label>
           <ion-input type="number" [value]="indice.comportamientoEnergetico" [readonly]="true">
           </ion-input>
@@ -88,7 +90,7 @@
     </ion-row>
     <ion-row>
       <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
-        <resultados [tituloResultado]="'IDEX'" [resultado]="indice.idex"></resultados>
+        <resultados [tituloResultado]="'idex'" [resultado]="indice.idex"></resultados>
       </ion-col>
     </ion-row>
   </ion-grid>

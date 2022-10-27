@@ -49,6 +49,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@types/jspdf": "^2.0.0",
     "@types/lodash": "^4.14.182",
+    "@types/papaparse": "^5.3.5",
     "chart.js": "3.7.1",
     "com.telerik.plugins.nativepagetransitions": "^0.7.0",
     "cordova-plugin-file-opener2": "^3.0.5",
@@ -62,6 +63,7 @@
     "leaflet": "^1.8.0",
     "leaflet.utm": "^1.0.0",
     "ngx-translate-multi-http-loader": "^7.0.2",
+    "papaparse": "^5.3.2",
     "path-browserify": "^1.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "7.5.5",
@@ -69,7 +71,6 @@
     "swiper": "^8.4.2",
     "tslib": "^2.2.0",
     "typeorm": "^0.2.44",
-    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -87,7 +88,8 @@
     "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.20.46",
+    "@types/jest": "^29.2.0",
+    "@types/node": "^12.20.55",
     "@types/sqlite3": "^3.1.8",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",

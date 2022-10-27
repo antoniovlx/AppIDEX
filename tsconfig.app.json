@@ -4,8 +4,9 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [
+      "jest",
       "node"
-    ]
+    ],
   },
   "files": [
     "src/main.ts",

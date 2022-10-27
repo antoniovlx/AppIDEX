@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { IonSelect } from '@ionic/angular';
-import { parse } from 'path';
-import { firstValueFrom } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { IonContent, IonSelect } from '@ionic/angular';
+
+import { firstValueFrom, of } from 'rxjs';
 import { Pendientes } from 'src/entities/Pendientes';
 import { PesosModelos } from 'src/entities/PesosModelos';
 import { AppService } from '../services/app.service';
@@ -23,13 +24,15 @@ export class EntradasPage implements OnInit {
   exposicionSelected: string;
   densidadPiesSelected: string;
   humedadFinoMuertoSelected: string;
-  velocidadVientoLlamaSelected: string;
+  velocidadVientoLlamaSuperficieSelected: string;
   velocidadViento10metrosSelected: string;
   fraccionCopaCubiertaSelected: string;
   longitudCopaSelected: string;
   diametroTroncoSelected: string;
   aberturaLaderasSelected: string;
   pendienteCauceSelected: string;
+  probabilidadFuegoCopasSelected: string;
+  probabilidadFuegoEruptivoSelected: string;
 
   pendientes: Pendientes[] = [];
   modelos = [];
@@ -39,23 +42,26 @@ export class EntradasPage implements OnInit {
   @ViewChild("modelo1", { static: false })
   modelo1Select: IonSelect
 
-  pesos: PesosModelos;
-  entradas: variables.UserInput;
+  @ViewChild("content", { static: false })
+  content: IonContent;
 
-  constructor(private appService: AppService, private calculosService: CalculosService, private uiService: UiService, private render2: Renderer2) {
+  pesos: PesosModelos;
+  entradas: variables.Input;
+
+  constructor(private cd: ChangeDetectorRef, private appService: AppService, private calculosService: CalculosService, private uiService: UiService, private render2: Renderer2) {
 
   }
 
   ngOnInit() {
+    this.entradas = this.appService.getEntradas();
     this.appService.getPendientes().subscribe(pendientes => {
       this.pendientes = pendientes;
+      console.log(this.pendientes);
     });
 
-    this.entradas = this.appService.getEntradas();
-  }
-
-  ngAfterViewInit() {
-
+    this.uiService.getTopScrolled$().subscribe(scrolled => {
+      this.content.scrollToTop();
+    });
   }
 
   get variables() {
@@ -76,7 +82,7 @@ export class EntradasPage implements OnInit {
 
   updateEspecie(especie: string) {
     this.especieSelected = especie;
-    this.entradas.especie = this.especieSelected;
+    this.entradas.copas.especie = this.especieSelected;
     this.calcularIces();
   }
 
@@ -85,6 +91,34 @@ export class EntradasPage implements OnInit {
     this.entradas.exposicion = this.exposicionSelected;
     this.appService.exposicionChange(parseInt(value));
     this.calcularIces();
+  }
+
+  updateProbabilidadFuegoCopas(value: string) {
+    this.probabilidadFuegoCopasSelected = value;
+    this.entradas.isProbabilidadFuegoCopas = value === 'si' ? true : false;
+    this.clearInputDisabledCopas();
+    this.calcularIces();
+  }
+
+  updateProbabilidadFuegoEruptivo(value: string) {
+    this.probabilidadFuegoEruptivoSelected = value;
+    this.entradas.isProbabilidadFuegoEruptivo = value === 'si' ? true : false;
+    this.clearInputDisabledEruptivo();
+    this.calcularIces();
+  }
+
+  clearInputDisabledCopas() {
+    this.longitudCopaSelected = undefined;
+    this.fraccionCopaCubiertaSelected = undefined
+    this.especieSelected = undefined;
+    this.densidadPiesSelected = undefined;
+    this.entradas.copas.clearInputDisabledCopas();
+  }
+
+  clearInputDisabledEruptivo() {
+    this.aberturaLaderasSelected = undefined;
+    this.pendienteCauceSelected = undefined
+    this.entradas.eruptivo.clearInputDisabledEruptivo();
   }
 
   updateTipoModelo(tipo: string) {
@@ -113,66 +147,117 @@ export class EntradasPage implements OnInit {
     this.calcularIces();
   }
 
-  updateVelocidadVientoLlama(val: string) {
-    this.velocidadVientoLlamaSelected = val;
-    this.entradas.velocidadVientoLlama = parseInt(this.velocidadVientoLlamaSelected);
+  updateVelocidadVientoLlamaSuperficie(val: string) {
+    this.velocidadVientoLlamaSuperficieSelected = val;
+    this.entradas.velocidadVientoLlama = parseInt(this.velocidadVientoLlamaSuperficieSelected);
+    this.updateValidadValuesVelocidad10m();
     this.calcularIces();
+  }
+
+  private updateValidadValuesVelocidad10m() {
+    this.variables.velocidadViento.forEach(velocidad => {
+      let value = velocidad.value;
+      if (value.includes('>')) value = velocidad.value.substring(1)
+
+      if (parseInt(value) <= this.entradas.velocidadVientoLlama)
+        velocidad.disabled = true;
+    })
   }
 
   updateVelocidadViento10metros(val: string) {
     this.velocidadViento10metrosSelected = val;
     this.entradas.velocidadViento10metros = parseInt(this.velocidadViento10metrosSelected);
     this.calcularIces();
+
   }
 
 
-  updateDensidadCopa(val: string) {
+  updateDensidadPies(val) {
     this.densidadPiesSelected = val;
-    this.entradas.densidadPies = parseFloat(this.densidadPiesSelected);
-    this.calcularIces();
+    if (this.densidadPiesSelected !== '') {
+      this.entradas.copas.densidadPies = parseFloat(this.densidadPiesSelected);
+      this.calcularIces();
+    }
   }
 
   updateFraccionCopa(val: string) {
     this.fraccionCopaCubiertaSelected = val;
-    this.entradas.fraccionCopaCubierta = parseFloat(this.fraccionCopaCubiertaSelected);
+    this.entradas.copas.fraccionCopaCubierta = parseFloat(this.fraccionCopaCubiertaSelected) / 100;
     this.calcularIces();
   }
 
   updateLongitudCopa(val) {
     this.longitudCopaSelected = val;
-    this.entradas.longitudCopa = parseFloat(this.longitudCopaSelected);
+    this.entradas.copas.longitudCopa = parseFloat(this.longitudCopaSelected);
     this.calcularIces();
   }
 
   updateDiametroTronco(val) {
     this.diametroTroncoSelected = val;
-    this.entradas.diametroTronco = parseFloat(this.diametroTroncoSelected);
-    this.calcularIces();
-  }
-
-  updateAberturaLaderas(val){
-    this.aberturaLaderasSelected = val;
-    this.entradas.aberturaLaderas = parseFloat(this.aberturaLaderasSelected);
-    this.calcularIces();
-  }
-
-  updatePendienteCauce(val){
-    this.pendienteCauceSelected = val;
-    this.entradas.pendienteCauce = parseFloat(this.pendienteCauceSelected);
-    this.calcularIces();
-  }
-
-  calcularIces() {
-    if (this.checkEntradas()=== true){
-      this.calculosService.calculateIceSuperficial(this.pesos.superficial);
-      this.calculosService.calculateIceCopas();
-      this.calculosService.calculateIceEruptivo();
+    if (this.diametroTroncoSelected !== '') {
+      this.entradas.diametroTronco = parseFloat(this.diametroTroncoSelected);
+      this.calcularIces();
+    }else{
+      this.calculosService.clearIces();
     }
   }
 
-  private checkEntradas() {
-    for (const key in this.entradas) {
-      if (this.entradas[key] === undefined)
+  numberOnlyValidation(event: any) {
+    const pattern = /[0-9.,]/;
+    let inputChar = String.fromCharCode(event.charCode);
+
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  hayCopas() {
+    return !this.entradas.isProbabilidadFuegoCopas;
+  }
+
+  hayEruptivo() {
+    return !this.entradas.isProbabilidadFuegoEruptivo;
+  }
+
+  updateAberturaLaderas(val) {
+    this.aberturaLaderasSelected = val;
+    this.entradas.eruptivo.aberturaLaderas = parseFloat(this.aberturaLaderasSelected);
+    this.calcularIces();
+  }
+
+  updatePendienteCauce(val) {
+    this.pendienteCauceSelected = val;
+    this.entradas.eruptivo.pendienteCauce = parseFloat(this.pendienteCauceSelected);
+    this.calcularIces();
+  }
+
+  async calcularIces() {
+    this.calculosService.clearIces();
+
+    if (this.checkEntradas(this.entradas) === true) {
+      await this.calculosService.calculateIceSuperficial(this.pesos);
+
+
+      if (this.entradas.isProbabilidadFuegoCopas === true) {
+        if (this.checkEntradas(this.entradas.copas) === true) {
+          await this.calculosService.calculateIceCopas();
+        }
+      }
+
+      if (this.entradas.isProbabilidadFuegoEruptivo === true) {
+        if (this.checkEntradas(this.entradas.eruptivo) === true) {
+          await this.calculosService.calculateIceEruptivo();
+        }
+      }
+    }
+  }
+
+  private checkEntradas(entradas) {
+    for (const key in entradas) {
+      if (entradas[key] === undefined)
+        return false;
+
+      if (typeof entradas[key] === 'number' && isNaN(entradas[key]))
         return false;
     }
     return true;

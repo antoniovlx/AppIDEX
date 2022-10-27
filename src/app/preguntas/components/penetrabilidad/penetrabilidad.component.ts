@@ -26,13 +26,14 @@ export class PenetrabilidadComponent implements OnInit {
 
   @Output()
   onInputChange: EventEmitter<number> = new EventEmitter();
+  textWarningData: string;
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.appService.isModeloChanged().subscribe(pesos => {
-        this.pesoModelo = pesos.dificultad;
-        this.calcularPenetrabilidad();
+      this.pesoModelo = pesos.dificultad;
+      this.calcularPenetrabilidad();
     });
 
     this.appService.isPendienteChanged().subscribe(peso => {
@@ -63,15 +64,20 @@ export class PenetrabilidadComponent implements OnInit {
 
   calcularPenetrabilidad() {
     if (this.comportamiento !== undefined && this.distanciaVial !== undefined
-      && this.areasTransitables !== undefined && this.pesoExposicion !== undefined
-      && this.pesoModelo !== undefined) {
+      && this.areasTransitables !== undefined) {
 
-      let sendasPrecombates = parseFloat(this.areasTransitables) * parseFloat(this.distanciaVial);
+      if (this.pesoExposicion !== undefined
+        && this.pesoModelo !== undefined) {
+        let sendasPrecombates = parseFloat(this.areasTransitables) * parseFloat(this.distanciaVial);
 
-      this.penetrabilidad = (this.pesoPendiente + this.pesoModelo +
-        parseFloat(this.comportamiento) + this.pesoExposicion + (2 * sendasPrecombates)) / 6;
+        this.penetrabilidad = (this.pesoPendiente + this.pesoModelo +
+          parseFloat(this.comportamiento) + this.pesoExposicion + (2 * sendasPrecombates)) / 6;
 
-      this.onInputChange.emit(parseFloat(this.penetrabilidad.toFixed(2)));
+        this.onInputChange.emit(parseFloat(this.penetrabilidad.toFixed(2)));
+      }
+      else {
+        this.textWarningData = "Pendiente del terreno, modelo de combustible y exposición";
+      }
     }
   }
 

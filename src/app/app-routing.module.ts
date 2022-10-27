@@ -21,18 +21,6 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
-  {
-    path: 'preguntas',
-    loadChildren: () => import('./preguntas/preguntas.module').then( m => m.PreguntasPageModule)
-  },
-  {
-    path: 'entradas',
-    loadChildren: () => import('./entradas/entradas.module').then( m => m.EntradasPageModule)
-  },  {
-    path: 'resultados',
-    loadChildren: () => import('./resultados/resultados.module').then( m => m.ResultadosPageModule)
-  },
-
 ];
 
 @NgModule({

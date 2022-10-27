@@ -11,6 +11,9 @@ export class PesosModelos {
   @Column("text", { name: "modelo", nullable: false })
   modelo: string;
 
+  @Column("decimal", { name: "calorSuperficial", nullable: false })
+  calorSuperficial: number;
+
   @Column("integer", { name: "manual", nullable: false })
   manual: number;
 

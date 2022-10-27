@@ -5,6 +5,8 @@ import { SwiperComponent } from "swiper/angular";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { AppService } from '../services/app.service';
 import { Indice } from '../shared/model/modelData';
+import { IonContent } from '@ionic/angular';
+import { UiService } from '../services/ui.service';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -24,6 +26,8 @@ export class PreguntasPage implements OnInit {
 
   @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
 
+  @ViewChild(IonContent, { static: false }) content: IonContent;
+
   private slides: any;
 
   private indices: Indice;
@@ -31,10 +35,14 @@ export class PreguntasPage implements OnInit {
   selectedSegment: string = '0';
   preguntasDiv: any;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private uiService: UiService) { }
 
   ngOnInit() {
     this.indices = this.appService.getIndices();
+
+    this.uiService.getTopScrolled$().subscribe(()=>{
+      this.content.scrollToTop();
+    });
   }
 
   ngAfterViewInit() {

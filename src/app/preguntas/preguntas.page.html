@@ -5,7 +5,7 @@
         <ion-thumbnail slot="start" class="tab-img">
           <img [src]="'./assets/img/accesibilidad.png'">
         </ion-thumbnail>
-        <ion-label>1. {{'Accesibilidad'| translate}}</ion-label>
+        <ion-label>1. {{'accesibilidad'| translate}}</ion-label>
       </ion-item>
     </ion-segment-button>
     <ion-segment-button id="segment-1" type="icon-bottom" value="1" (click)="segmentSelected(1)" class="tab" [disabled]="isDisabledTab[1]">
@@ -13,7 +13,7 @@
         <ion-thumbnail slot="start" class="tab-img">
           <img [src]="'./assets/img/movilidad.png'">
         </ion-thumbnail>
-        <ion-label>2. {{'Movilidad'| translate}}</ion-label>
+        <ion-label>2. {{'movilidad'| translate}}</ion-label>
       </ion-item>
     </ion-segment-button>
     <ion-segment-button id="segment-2" type="icon-bottom" value="2" (click)="segmentSelected(2)" class="tab" [disabled]="isDisabledTab[2]">
@@ -21,7 +21,7 @@
         <ion-thumbnail slot="start" class="tab-img">
           <img [src]="'./assets/img/apertura.png'">
         </ion-thumbnail>
-        <ion-label>3. {{'Apertura'| translate}}</ion-label>
+        <ion-label>3. {{'apertura'| translate}}</ion-label>
       </ion-item>
     </ion-segment-button>
     <ion-segment-button id="segment-3" type="icon-bottom" value="3" (click)="segmentSelected(3)" class="tab" [disabled]="isDisabledTab[3]">
@@ -29,7 +29,7 @@
         <ion-thumbnail slot="start" class="tab-img">
           <img [src]="'./assets/img/penetrabilidad.png'">
         </ion-thumbnail>
-        <ion-label>4. {{'Penetrabilidad'| translate}}</ion-label>
+        <ion-label>4. {{'penetrabilidad'| translate}}</ion-label>
       </ion-item>
     </ion-segment-button>
     <ion-segment-button id="segment-4" type="icon-bottom" value="4" (click)="segmentSelected(4)" class="tab" [disabled]="isDisabledTab[4]">
@@ -37,7 +37,7 @@
         <ion-thumbnail slot="start" class="tab-img">
           <img [src]="'./assets/img/medios.png'">
         </ion-thumbnail>
-        <ion-label>5. {{'Medios aéreos'| translate}}</ion-label>
+        <ion-label>5. {{'mediosAereos'| translate}}</ion-label>
       </ion-item>
     </ion-segment-button>
   </ion-segment>
@@ -68,69 +68,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!--<ion-grid fixed>
-    <ion-row>
-      <ion-col sizeMd="12" sizeSm="12" sizeXs="12">
-        <ion-accordion-group expand="inset" [value]="preguntas[count]">
-          <ion-accordion value="accesibilidad">
-            <ion-item slot="header" color="light">
-              <ion-thumbnail slot="start" class="option">
-                <img class="tab-icon" src="./assets/img/accesibilidad.png">
-              </ion-thumbnail>
-              <ion-label>{{ 'Accesibilidad' | translate}}</ion-label>
-            </ion-item>
-            <div class="ion-padding" slot="content">
-              <accesibilidad (onClickNext)="next($event)" (onInputChange)="updateAccesibilidad($event)"></accesibilidad>
-            </div>
-          </ion-accordion>
-          <ion-accordion value="movilidad">
-            <ion-item slot="header" color="light">
-              <ion-thumbnail slot="start" class="option">
-                <img class="tab-icon" src="./assets/img/movilidad.png">
-              </ion-thumbnail>
-              <ion-label>Movilidad</ion-label>
-            </ion-item>
-            <div class="ion-padding" slot="content">
-              <movilidad (onClickNext)="next($event)"></movilidad>
-            </div>
-          </ion-accordion>
-          <ion-accordion value="penetrabilidad">
-            <ion-item slot="header" color="light">
-              <ion-thumbnail slot="start" class="option">
-                <img class="tab-icon" src="./assets/img/penetrabilidad.png">
-              </ion-thumbnail>
-              <ion-label>Penetrabilidad</ion-label>
-            </ion-item>
-            <div class="ion-padding" slot="content">
-              <penetrabilidad (onClickNext)="next($event)"></penetrabilidad>
-            </div>
-          </ion-accordion>
-          <ion-accordion value="apertura">
-            <ion-item slot="header" color="light">
-              <ion-thumbnail slot="start" class="option">
-                <img class="tab-icon" src="./assets/img/apertura.png">
-              </ion-thumbnail>
-              <ion-label>Apertura</ion-label>
-            </ion-item>
-            <div class="ion-padding" slot="content">
-              <apertura (onClickNext)="next($event)"></apertura>
-            </div>
-          </ion-accordion>
-          <ion-accordion value="medios">
-            <ion-item slot="header" color="light">
-              <ion-thumbnail slot="start" class="option">
-                <img class="tab-icon" src="./assets/img/medios.png">
-              </ion-thumbnail>
-              <ion-label>Medios Aéreos</ion-label>
-            </ion-item>
-            <div class="ion-padding" slot="content">
-              <medios (onClickNext)="next($event)"></medios>
-            </div>
-          </ion-accordion>
-        </ion-accordion-group>
-        <resultados></resultados>
-      </ion-col>
-    </ion-row>
-  </ion-grid>-->
 </ion-content>

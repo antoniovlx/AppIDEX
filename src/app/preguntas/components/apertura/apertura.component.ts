@@ -26,6 +26,7 @@ export class AperturaComponent implements OnInit {
 
   @Output()
   onInputChange: EventEmitter<number> = new EventEmitter();
+  textWarningData: string;
 
   constructor(private appService: AppService) { }
 
@@ -59,13 +60,18 @@ export class AperturaComponent implements OnInit {
 
   calcularApertura() {
     if (this.mecanizado !== undefined && this.manual !== undefined 
-      && this.cm !== undefined && this.ce !== undefined && this.isLimitante !== undefined) {
-      if (this.isLimitante === 'si') {
-        this.apertura = this.cm + this.manual;
-      } else {
-        this.apertura = this.cm + this.manual + this.ce + this.mecanizado
-      }
-      this.onInputChange.emit(this.apertura);
+      && this.isLimitante !== undefined) {
+
+        if(this.cm !== undefined && this.ce !== undefined){
+          if (this.isLimitante === 'si') {
+            this.apertura = this.cm + this.manual;
+          } else {
+            this.apertura = this.cm + this.manual + this.ce + this.mecanizado
+          }
+          this.onInputChange.emit(this.apertura);
+        }else{
+          this.textWarningData = "Pendiente del terreno y modelo de combustible";
+        }
     }
   }
 }

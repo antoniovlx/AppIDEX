@@ -16,6 +16,16 @@ export const humedadFinoMuerto = ['3', '6', '9', '12'];
 export const modelosUco40 = ['HPM1', 'HPM2', 'HPM3', 'HPM4', 'HPM5', 'HR1', 'HR2', 'HR3', 'HR4', 'HR5', 'HR6', 'HR7', 'HR8', 'HR9', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'PM1', 'PM2', 'PM3', 'PM4', 'R1', 'R2', 'R3', 'R4'];
 export const modelosBehave = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
 export const velocidadVientoLlama = ['0', '4', '8', '12', '16', '20', '24'];
+export const velocidadViento = [
+    { value: '0', disabled: false },
+    { value: '5', disabled: false },
+    { value: '10', disabled: false },
+    { value: '15', disabled: false },
+    { value: '20', disabled: false },
+    { value: '25', disabled: false },
+    { value: '>30', disabled: false },
+]
+
 export const densidadCopa = ['0.1', '0.2', '0.3', '0.4'];
 export const fraccionCopa = ['35', '45', '55', '65', '75', '85', '95'];
 
@@ -25,17 +35,27 @@ export class Indice {
     apertura: number;
     penetrabilidad: number;
     mediosAereos: number;
-    oportunidadExtincion: number;
+    oportunidadExtincion: number = 0;
     iceSuperficial: number = 0;
     iceCopas: number = 0;
     iceEruptivo: number = 0;
 
-    get comportamientoEnergetico(){
-        return this.iceSuperficial + this.iceCopas + this.iceEruptivo;
+    get comportamientoEnergetico() {
+        return (this.iceSuperficial + this.iceCopas + this.iceEruptivo).toFixed(2);
     }
 
-    get idex(){
-        return this.iceSuperficial + this.iceCopas + this.iceEruptivo;
+    clearIces() {
+        this.iceSuperficial = 0;
+        this.iceCopas = 0;
+        this.iceEruptivo = 0;
+    }
+
+    get idex() {
+        if (this.iceSuperficial !== 0 || this.iceCopas !== 0 || this.iceEruptivo !== 0) {
+            return parseFloat((this.oportunidadExtincion / (this.iceSuperficial + this.iceCopas + this.iceEruptivo)).toFixed(2));
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -49,7 +69,7 @@ export const pesosLongitudLlamaSuperficial = [
     { 'min': 3.10, 'max': 3.51, 'peso': 7 },
     { 'min': 3.51, 'max': 4.10, 'peso': 8 },
     { 'min': 4.10, 'max': 4.50, 'peso': 9 },
-    { 'min': 4.50, 'max': undefined, 'peso': 10 }
+    { 'min': 4.50, 'max': 9999999, 'peso': 10 }
 ]
 
 export const pesosLongitudLlamaCopas = [
@@ -62,7 +82,7 @@ export const pesosLongitudLlamaCopas = [
     { 'min': 35, 'max': 40, 'peso': 7 },
     { 'min': 40, 'max': 45, 'peso': 8 },
     { 'min': 45, 'max': 50, 'peso': 9 },
-    { 'min': 50, 'max': undefined, 'peso': 10 }
+    { 'min': 50, 'max': 9999999, 'peso': 10 }
 ]
 
 export const pesosCalorAreaCopas = [
@@ -75,40 +95,110 @@ export const pesosCalorAreaCopas = [
     { 'min': 11301, 'max': 11861, 'peso': 7 },
     { 'min': 11861, 'max': 12421, 'peso': 8 },
     { 'min': 12421, 'max': 12981, 'peso': 9 },
-    { 'min': 12981, 'max': undefined, 'peso': 10 }
+    { 'min': 12981, 'max': 9999999, 'peso': 10 }
 ]
 
-
-export class UserInput {
-    tipoModelo: string;
-    modelo: string;
+class InputCopas {
     especie: string;
-    pendiente: number;
-    exposicion: string;
     densidadPies: number;
-    humedadFinoMuerto: number;
-    velocidadVientoLlama: number;
-    velocidadViento10metros: number;
     fraccionCopaCubierta: number;
     longitudCopa: number;
-    diametroTronco: number;
+
+    constructor() {
+        this.especie = undefined;
+        this.densidadPies = undefined;
+        this.fraccionCopaCubierta = undefined;
+        this.longitudCopa = undefined;
+    }
+
+    clearInputDisabledCopas() {
+        this.longitudCopa = undefined;
+        this.fraccionCopaCubierta = undefined;
+        this.especie = undefined
+        this.densidadPies = undefined;
+    }
+}
+
+class InputEruptivo {
     aberturaLaderas: number;
     pendienteCauce: number;
 
     constructor() {
-        this.tipoModelo = undefined;
-        this.especie = undefined;
-        this.pendiente = undefined;
-        this.exposicion = undefined;
-        this.densidadPies = undefined;
-        this.humedadFinoMuerto = undefined;
-        this.velocidadVientoLlama = undefined;
-        this.velocidadViento10metros = undefined;
-        this.fraccionCopaCubierta = undefined;
-        this.longitudCopa = undefined;
-        this.diametroTronco = undefined;
+        this.aberturaLaderas = undefined;
+        this.pendienteCauce = undefined;
+    }
+
+    clearInputDisabledEruptivo() {
         this.aberturaLaderas = undefined;
         this.pendienteCauce = undefined;
     }
 }
+
+export class Input {
+    tipoModelo: string;
+    modelo: string;
+    pendiente: number;
+    exposicion: string;
+    humedadFinoMuerto: number;
+    velocidadVientoLlama: number;
+    velocidadViento10metros: number;
+    diametroTronco: number;
+    isProbabilidadFuegoCopas: boolean;
+    isProbabilidadFuegoEruptivo: boolean;
+
+    eruptivo: InputEruptivo;
+    copas: InputCopas;
+
+
+    constructor() {
+        this.tipoModelo = undefined;
+        this.pendiente = undefined;
+        this.exposicion = undefined;
+        this.humedadFinoMuerto = undefined;
+        this.velocidadVientoLlama = undefined;
+        this.velocidadViento10metros = undefined;
+        this.diametroTronco = undefined;
+        this.isProbabilidadFuegoCopas = undefined;
+        this.isProbabilidadFuegoEruptivo = undefined;
+
+        this.copas = new InputCopas();
+        this.eruptivo = new InputEruptivo();
+    }
+    
+    static getTestInputWithCopasSelected(): Input {
+        const entradas = new Input();
+
+        entradas.diametroTronco = 30;
+
+        entradas.exposicion = 'NW';
+
+        entradas.humedadFinoMuerto = 9;
+        entradas.isProbabilidadFuegoCopas = true;
+        entradas.pendiente = 15;
+        entradas.modelo = 'HPM4';
+        entradas.tipoModelo = 'UCO40';
+
+        entradas.velocidadViento10metros = 12;
+        entradas.velocidadVientoLlama = 4;
+
+
+        return entradas;
+    }
+
+    static getTestInputWithOutCopasSelected(): Input {
+        const entradas = new Input();
+        entradas.diametroTronco = 30;
+        entradas.exposicion = 'NW';
+        entradas.humedadFinoMuerto = 9;
+        entradas.isProbabilidadFuegoCopas = false;
+        entradas.pendiente = 15;
+        entradas.modelo = 'HPM4';
+        entradas.tipoModelo = 'behave';
+        entradas.velocidadViento10metros = 12;
+        entradas.velocidadVientoLlama = 4;
+
+        return entradas;
+    }
+}
+
 

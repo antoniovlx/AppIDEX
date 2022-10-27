@@ -139,3 +139,16 @@ ion-fab-button{
 ::-webkit-scrollbar {
   width: 800px;
 }
+
+#app-name {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  letter-spacing: 6px;
+  word-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none solid rgb(68, 68, 68);
+  color: var(--ion-color-step-600, #677483);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: capitalize;
+  }
