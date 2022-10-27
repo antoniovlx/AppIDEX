@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antoniovlx/appidex.git"
+    "url": "https://github.com/antoniovlx/AppIDEX.git"
   },
   "license": "MIT",
   "main": "build/src/index.js",
@@ -19,7 +19,7 @@
     "electron:start": "npm run build && electron --inspect=5858 ./",
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:pack": "npm run build && electron-builder build --dir -c ./electron-builder.config.json",
-    "electron:make": "npm run build && electron-builder build -c ./electron-builder.config.json -p never"
+    "electron:make": "npm run build && electron-builder build -c ./electron-builder.config.json -p always"
   },
   "dependencies": {
     "@capacitor-community/electron": "^4.1.0",
@@ -43,7 +43,8 @@
     "typescript": "~4.3.5"
   },
   "keywords": [
-    "capacitor",
-    "electron"
+    "idex",
+    "wildfires",
+    "labif"
   ]
 }

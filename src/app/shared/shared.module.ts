@@ -17,7 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { MissingTranslationHandler, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { TituloApartadoComponent } from './components/titulo-apartado/titulo-apartado.component';
@@ -30,7 +30,7 @@ import { SwiperModule } from 'swiper/angular';
   imports: [
     TranslateModule.forChild({
       //missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
-      useDefaultLang: false
+      useDefaultLang: false,
     }),
     SwiperModule,
     IonicModule,

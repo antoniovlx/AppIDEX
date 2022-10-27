@@ -9,7 +9,6 @@
     "capacitor.config.*",
     "app/**/*",
     "src/assets/databases/**/*"
-
   ],
   "publish": {
     "provider": "github"
