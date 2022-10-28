@@ -1,4 +1,4 @@
-package io.labif.econosinami;
+package io.labif.appidex;
 
 import com.getcapacitor.BridgeActivity;
 

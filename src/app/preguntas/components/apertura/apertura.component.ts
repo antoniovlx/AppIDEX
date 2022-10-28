@@ -39,9 +39,9 @@ export class AperturaComponent implements OnInit {
 
 
     this.appService.isModeloChanged().subscribe(pesos => {
-        this.mecanizado = pesos.mecanizado;
-        this.manual = pesos.manual;
-        this.calcularApertura();
+      this.mecanizado = pesos.mecanizado;
+      this.manual = pesos.manual;
+      this.calcularApertura();
     })
   }
 
@@ -59,19 +59,20 @@ export class AperturaComponent implements OnInit {
   }
 
   calcularApertura() {
-    if (this.mecanizado !== undefined && this.manual !== undefined 
+    if (this.mecanizado !== undefined && this.manual !== undefined
       && this.isLimitante !== undefined) {
 
-        if(this.cm !== undefined && this.ce !== undefined){
-          if (this.isLimitante === 'si') {
-            this.apertura = this.cm + this.manual;
-          } else {
-            this.apertura = this.cm + this.manual + this.ce + this.mecanizado
-          }
-          this.onInputChange.emit(this.apertura);
-        }else{
-          this.textWarningData = "Pendiente del terreno y modelo de combustible";
+      if (this.cm !== undefined && this.ce !== undefined) {
+        if (this.isLimitante === 'si') {
+          this.apertura = this.cm * this.manual;
+        } else {
+          this.apertura = this.cm * this.manual + this.ce * this.mecanizado
         }
+        this.onInputChange.emit(this.apertura);
+      }
+    }
+    else {
+      this.textWarningData = "Pendiente del terreno y modelo de combustible";
     }
   }
 }

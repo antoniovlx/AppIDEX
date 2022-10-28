@@ -1,5 +1,6 @@
 {
   "appId": "AppIDEX",
+  "copyright" : "Copyright © year ${author}",
   "directories": {
     "buildResources": "resources"
   },
@@ -16,7 +17,8 @@
   "nsis": {
     "allowElevation": true,
     "oneClick": false,
-    "allowToChangeInstallationDirectory": true
+    "allowToChangeInstallationDirectory": true,
+    "artifactName": "${productFilename}-installer-${version}.${ext}"
   },
   "win": {
     "target": [

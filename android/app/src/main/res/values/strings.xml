@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">EconosinamiApp</string>
-    <string name="title_activity_main">EconsinamiApp</string>
-    <string name="package_name">io.labif.econosinami</string>
-    <string name="custom_url_scheme">io.labif.econosinami</string>
+    <string name="app_name">AppIDEX</string>
+    <string name="title_activity_main">AppIDEX</string>
+    <string name="package_name">io.labif.appidex</string>
+    <string name="custom_url_scheme">io.labif.appidex</string>
 </resources>
