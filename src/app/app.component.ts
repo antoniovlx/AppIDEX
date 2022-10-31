@@ -3,15 +3,20 @@ import { IonContent, IonMenu, Platform, IonRouterOutlet } from '@ionic/angular';
 import { OrmService } from './services/orm.service';
 import { SQLiteService } from './services/sqlite.service';
 import { TranslateService } from '@ngx-translate/core';
-import { UtilService } from './services/util.service';
 import { appPages } from './app-routing.module';
 import { UiService } from './services/ui.service';
+import { Title } from '@angular/platform-browser';
 
 declare global {
   interface Window {
     electron: any;
   }
 }
+
+declare const require: (path: string) => any;
+
+const APP_NAME = require('../../package.json').productName;
+const APP_VERSION = require('../../package.json').version;
 
 @Component({
   selector: 'app-root',
@@ -33,7 +38,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private sqlite: SQLiteService,
     public translate: TranslateService,
     private uiService: UiService,
-    private util: UtilService
+    private titleService: Title
   ) {
 
     const lang = localStorage.getItem('lang');
@@ -41,9 +46,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       localStorage.setItem('lang', lang);
       translate.use(lang);
     } else {
-      translate.use(lang);
       localStorage.setItem('lang', 'es');
+      translate.use('es');
     }
+
+    this.titleService.setTitle(`${APP_NAME}-v${APP_VERSION}`);
 
     this.initializeApp();
   }

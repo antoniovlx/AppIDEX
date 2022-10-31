@@ -63,7 +63,7 @@
   "especie": "Especie",
   "exposicion": "Exposición",
   "fraccionCopaCubierta": "Fracción copa cubierta (kg/m3)",
-  "humedadFinoMuerto": "Humedad combustible fino muerto (<6mm) (%) ",
+  "humedadFinoMuerto": "Humedad combustible fino muerto (<6mm) (%)",
   "iceCopas": "ICE Copas (1-10)",
   "iceEruptivo": "ICE Eruptivo (1-10)",
   "iceSuperficial": "ICE Superficial (1-10)",

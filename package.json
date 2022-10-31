@@ -1,6 +1,7 @@
 {
   "name": "appidex",
-  "version": "0.0.1",
+  "productName": "AppIDEX",
+  "version": "1.0.0",
   "author": "Antonio Vida",
   "homepage": "https://www.labif-uco.com/",
   "scripts": {
@@ -71,6 +72,7 @@
     "swiper": "^8.4.2",
     "tslib": "^2.2.0",
     "typeorm": "^0.2.44",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

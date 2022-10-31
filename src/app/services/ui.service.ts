@@ -58,11 +58,15 @@ export class UiService {
     this.translate.get(message).subscribe(async (res: string) => {
       const toast = await this.toastController.create({
         message: res,
-        duration: 4000,
         color: "primary",
         icon: 'information-circle',
         position: 'top',
-        cssClass: 'toast-message'
+        cssClass: 'toast-message',
+        buttons: [
+          {
+            text: "OK"
+          }
+        ]
       });
       toast.present();
     });

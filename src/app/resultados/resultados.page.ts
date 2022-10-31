@@ -38,7 +38,9 @@ export class ResultadosPage implements OnInit {
   async downloadCsv() {
     this.uiService.presentLoading("Exportando...");
 
-    let blob = await this.utilService.parseDataToBlob();
+    //let blob = await this.utilService.parseDataToBlob();
+
+    let blob = await this.utilService.generarInformeExcel();
 
     this.utilService.saveFile(blob, "AppIDEX");
 

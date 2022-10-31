@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { Injectable, NgModule } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Routes, RouterModule, RouterStateSnapshot } from '@angular/router';
+
 
 import { AboutPage } from './about.page';
+
 
 const routes: Routes = [
   {
@@ -14,6 +16,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AboutPageRoutingModule {}
+export class AboutPageRoutingModule { }

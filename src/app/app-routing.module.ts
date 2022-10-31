@@ -10,7 +10,7 @@ export const appPages = [
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'about',
     pathMatch: 'full'
   },
   {
@@ -22,6 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
 ];
+
 
 @NgModule({
   imports: [

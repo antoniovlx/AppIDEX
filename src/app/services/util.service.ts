@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-
+import * as XLSX from "xlsx";
 import { TranslateService } from '@ngx-translate/core';
 import { UiService } from './ui.service';
 import { AppService } from './app.service';
 import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
 import * as FileSaver from 'file-saver';
-import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import { firstValueFrom, Observable } from 'rxjs';
 import Papa from 'papaparse';
 
@@ -30,39 +28,39 @@ export class UtilService {
     return true;
   }
 
-  async getTranslate(key: string){
+  async getTranslate(key: string) {
     return await firstValueFrom(this.translateService.get(key));
   }
 
- async parseDataToBlob() {
+  async parseDataToBlob() {
     const data = Papa.unparse({
       "fields": ["Variable", "Value"],
       "data": await this.prepareResultData()
     });
 
-    let blob = new Blob([data], { type: "application/vnd.ms-excel;charset=utf-8" });
+    let blob = new Blob([data], { type: "text/csv" });
     return blob;
   }
 
-  async prepareResultData(){
+  async prepareResultData() {
     let resultDataArray = [];
 
     const entradas = await this.getArrayOfDataTranslated(this.appService.getEntradas());
     const indices = await this.getArrayOfDataTranslated(this.appService.getIndices());
-    
+
     resultDataArray = resultDataArray.concat(entradas).concat(indices).concat([['IDEX', this.appService.getIndices().idex]]);
 
     return resultDataArray;
   }
 
-  async getArrayOfDataTranslated(object){
+  async getArrayOfDataTranslated(object) {
     let data = [];
     for (const key in object) {
-      if(typeof object[key] === 'object'){
+      if (typeof object[key] === 'object') {
         for (const keyObject in object[key]) {
           data.push([await this.getTranslate(keyObject), object[key][keyObject]]);
         }
-      }else{
+      } else {
         data.push([await this.getTranslate(key), object[key]]);
       }
     }
@@ -70,17 +68,28 @@ export class UtilService {
   }
 
 
-  saveFile(data: Blob, fileName: string) {
+  async saveFile(data: Blob, fileName: string) {
     let now = new Date(Date.now())
-    var formattedDateTime = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()} ${now.getHours()} ${now.getMinutes()}`;
-
+    var formattedDateTime = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}_${now.getHours()}_${now.getMinutes()}`;
+   
     if (this.appService.isMobile()) {
-      this.writeAndOpenFile(data, `${fileName}_${formattedDateTime}.csv`);
+      this.writeAndOpenFile(data, `${fileName}_${formattedDateTime}.xlsx`);
     } else {
-      FileSaver.saveAs(data, `${fileName}_${formattedDateTime}.csv`);
+      FileSaver.saveAs(data, `${fileName}_${formattedDateTime}.xlsx`);
       this.uiService.presentToast("Datos exportados correctamente");
     }
     this.uiService.dismissLoading();
+  }
+
+  async generarInformeExcel() {
+
+    let data = await this.prepareResultData();
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data, { skipHeader: true });
+    const workbook: XLSX.WorkBook = { Sheets: { 'idex': worksheet }, SheetNames: ['idex'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    return new Blob([excelBuffer], { type: "application/octet-stream" });
   }
 
   async writeAndOpenFile(data: Blob, fileName: string) {
@@ -96,9 +105,15 @@ export class UtilService {
           directory: Directory.Data,
           recursive: true
         });
+
         that.uiService.presentToast("Datos exportados correctamente");
 
-        that.fileOpener.showOpenWithDialog(result.uri, 'application/vnd.ms-excel')
+        let type = data.type;
+        if(data.type === 'application/octet-stream'){
+          type = 'application/vnd.ms-excel';
+        }
+
+        that.fileOpener.showOpenWithDialog(result.uri, type)
           .then(() => {
             console.log('File is opened');
           })
@@ -107,12 +122,43 @@ export class UtilService {
             that.uiService.presentAlertToast("Error opening file");
           });
 
+     
+
         console.log('Wrote file', result.uri);
       } catch (e) {
         console.error('Unable to write file', e);
       }
     }
   }
+
+  writeXLSX(workbook, wopts) {
+    return XLSX.write(workbook, wopts);
+  }
+
+  exportTableToExcel(ws: XLSX.WorkSheet, data): XLSX.WorkSheet {
+    ws = XLSX.utils.sheet_add_dom(ws, data, {
+      cellDates: true, raw: true
+    });
+
+    return ws;
+  }
+
+  init_sheet(data: any[], skipHeader: boolean): XLSX.WorkSheet {
+    return XLSX.utils.json_to_sheet(data, { skipHeader: skipHeader });
+  }
+
+  add_content_to_sheet(ws: XLSX.WorkSheet, row: number, data: any[], skipHeader?: boolean): XLSX.WorkSheet {
+    return XLSX.utils.sheet_add_json(ws, data, { skipHeader: skipHeader, origin: 'A' + row });
+  }
+
+  create_book() {
+    return XLSX.utils.book_new();
+  }
+
+  append_worksheet_to_book(workbook: XLSX.WorkBook, worksheet: XLSX.WorkSheet, name?: string) {
+    XLSX.utils.book_append_sheet(workbook, worksheet, name);
+  }
+
 
   Acres_Has(x) {
     return 0.404687 * x;

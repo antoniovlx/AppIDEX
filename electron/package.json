@@ -1,6 +1,7 @@
 {
   "name": "appidex-desktop",
-  "version": "1.0.2",
+  "productName": "AppIDEX",
+  "version": "1.0.0",
   "description": "AppIDEX",
   "author": {
     "name": "Antonio Vida",

@@ -187,7 +187,7 @@ export class ElectronCapacitorApp {
 
     setTimeout(() => {
       this.SplashScreen.getSplashWindow().hide()
-    }, 3000
+    }, 4000
     )
 
     /*this.MainWindow.webContents
