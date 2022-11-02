@@ -9,6 +9,11 @@
     <ion-button id="button-download" title="Exportar csv" expand="block" (click)="downloadCsv()" expand="block" shape="round" [disabled]="indice.idex === 0">
       <ion-icon name="download"></ion-icon>
     </ion-button>
+    <ion-row>
+      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
+        <resultados [tituloResultado]="'idex'" [resultado]="indice.idex"></resultados>
+      </ion-col>
+    </ion-row>
     <titulo-apartado [imagePath]="'./assets/img/medios.png'" [titulo]="'oportunidadExtincion'">
     </titulo-apartado>
     <ion-row>
@@ -86,11 +91,6 @@
           <ion-input type="number" [value]="indice.comportamientoEnergetico" [readonly]="true">
           </ion-input>
         </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
-        <resultados [tituloResultado]="'idex'" [resultado]="indice.idex"></resultados>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -68,7 +68,7 @@ export class AperturaComponent implements OnInit {
         } else {
           this.apertura = this.cm * this.manual + this.ce * this.mecanizado
         }
-        this.onInputChange.emit(this.apertura);
+        this.onInputChange.emit(this.apertura / 2);
       }
     }
     else {

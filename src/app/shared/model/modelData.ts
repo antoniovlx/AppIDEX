@@ -30,11 +30,11 @@ export const densidadCopa = ['0.1', '0.2', '0.3', '0.4'];
 export const fraccionCopa = ['35', '45', '55', '65', '75', '85', '95'];
 
 export class Indice {
-    accesibilidad: number;
-    movilidad: number;
-    apertura: number;
-    penetrabilidad: number;
-    mediosAereos: number;
+    accesibilidad: number = 0;
+    movilidad: number = 0;
+    apertura: number = 0;
+    penetrabilidad: number = 0;
+    mediosAereos: number = 0;
     oportunidadExtincion: number = 0;
     iceSuperficial: number = 0;
     iceCopas: number = 0;
