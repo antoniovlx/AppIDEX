@@ -15,7 +15,8 @@ export class AboutPage implements OnInit, AfterViewInit {
   title: string = "Créditos";
   imagePath: string = "./assets/img/question.png";
 
-  @ViewChild(IonContent, { static: false }) content: IonContent;
+  @ViewChild("content", { static: false })
+  content: IonContent;
 
   constructor(private location: Location, private uiService: UiService) { }
   

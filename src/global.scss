@@ -144,10 +144,17 @@ ion-grid {
 
 
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
   .alert-wrapper {
     max-width: unset !important;
     width: 60% !important;
+  }
+}
+
+@media (min-width: 425px) and  (max-width: 900px) {
+  .alert-wrapper {
+    max-width: unset !important;
+    width: 80% !important;
   }
 }
 

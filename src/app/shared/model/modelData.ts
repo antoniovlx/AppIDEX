@@ -52,7 +52,7 @@ export class Indice {
 
     get idex() {
         if (this.iceSuperficial !== 0 || this.iceCopas !== 0 || this.iceEruptivo !== 0) {
-            return parseFloat((this.oportunidadExtincion / (this.iceSuperficial + this.iceCopas + this.iceEruptivo)).toFixed(2));
+            return parseFloat(((this.iceSuperficial + this.iceCopas + this.iceEruptivo) / this.oportunidadExtincion).toFixed(2));
         } else {
             return 0;
         }

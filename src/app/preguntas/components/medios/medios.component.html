@@ -3,7 +3,7 @@
   <ion-row>
     <ion-col size="12">
       <ion-label position="stacked">{{'Distancia al punto de agua para helicópteros más cercano'
-        | translate}} (m)</ion-label>
+        | translate}} (km)</ion-label>
       <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaHelicopterosSelect [value]="distanciaHelicopteros" 
       (ionChange)="updateDistanciaHelicopteros(distanciaHelicopterosSelect.value)">
         <ion-select-option value="10">&lt;1</ion-select-option>
@@ -13,7 +13,7 @@
         <ion-select-option value="3">40-60</ion-select-option>
         <ion-select-option value="1">50-60</ion-select-option>
       </ion-select></ion-col>
-    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la pista para carga de aviones de carga en tierra más cercana' | translate}} (m)</ion-label>
+    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la pista para carga de aviones de carga en tierra más cercana' | translate}} (km)</ion-label>
       <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaAvionesCargaSelect [value]="distanciaAvionesCarga" (ionChange)="updateDistanciaAvionesCarga(distanciaAvionesCargaSelect.value)">
         <ion-select-option value="10">&lt;15</ion-select-option>
         <ion-select-option value="9">15-60</ion-select-option>
@@ -23,7 +23,7 @@
         <ion-select-option value="1">>400</ion-select-option>
       </ion-select>
       </ion-col>
-    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la lámina de agua (emblase o playa) más cercana para carga de aviones anfibio' | translate}} (m)</ion-label>
+    <ion-col size="12"><ion-label position="stacked">{{'Distancia a la lámina de agua (emblase o playa) más cercana para carga de aviones anfibio' | translate}} (km)</ion-label>
       <ion-select  cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #distanciaAvionesAnfibiosSelect [value]="distanciaAvionesAnfibios" (ionChange)="updateDistanciaAvionesAnfibios(distanciaAvionesAnfibiosSelect.value)">
         <ion-select-option value="10">25</ion-select-option>
         <ion-select-option value="9">25-50</ion-select-option>

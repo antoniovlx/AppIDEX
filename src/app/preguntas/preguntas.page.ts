@@ -32,8 +32,7 @@ export class PreguntasPage implements OnInit {
 
   private indices: Indice;
 
-  selectedSegment: string = '0';
-  preguntasDiv: any;
+  selectedSegment: string = '0'
 
   constructor(private appService: AppService, private uiService: UiService) { }
 
