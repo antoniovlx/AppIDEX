@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antoniovlx/AppIDEX.idegit"
+    "url": "https://github.com/antoniovlx/AppIDEX.git"
   },
   "license": "MIT",
   "main": "build/src/index.js",
