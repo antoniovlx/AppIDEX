@@ -24,10 +24,9 @@ import { TituloApartadoComponent } from './components/titulo-apartado/titulo-apa
 import { LoadingComponent } from './components/loading/loading.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { SwiperModule } from 'swiper/angular';
-import { DynamicDirective } from './dynamic.directive';
 
 @NgModule({
-  declarations: [BreadcrumbComponent, LoadingComponent, TituloApartadoComponent, ResultadosComponent, DynamicDirective],
+  declarations: [BreadcrumbComponent, LoadingComponent, TituloApartadoComponent, ResultadosComponent],
   imports: [
     TranslateModule.forChild({
       //missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
@@ -52,7 +51,6 @@ import { DynamicDirective } from './dynamic.directive';
     TituloApartadoComponent,
     MatTableModule,
     SwiperModule,
-    DynamicDirective,
     MatToolbarModule,
     MatCheckboxModule, MatSelectModule, MatFormFieldModule, MatInputModule, MatTabsModule, MatProgressSpinnerModule,
     MatIconModule, MatGridListModule, MatSidenavModule, MatTableModule, MatRadioModule,
