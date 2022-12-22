@@ -3,7 +3,7 @@
     {{tituloResultado | translate}}
   </div>
   <div class="resultados-value">
-    <span *ngIf="resultado !== 0;else noData">
+    <span *ngIf="resultado !== undefined;else noData">
       {{ resultado | number : '1.0-2' }}
     </span>
     <ng-template #noData>

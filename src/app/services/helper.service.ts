@@ -33,4 +33,8 @@ export class HelperService {
   lineaDescarga(rendimiento: number /* Metros */) {
     return rendimiento;
   }
+
+  round(number: number){
+    return parseFloat(number.toFixed(3));
+  }
 }

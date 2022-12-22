@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { HelperService } from '../services/helper.service';
 import { AppService } from '../services/app.service';
 import { Indice } from '../shared/model/modelData';
 import { IonContent } from '@ionic/angular';
@@ -34,7 +35,7 @@ export class PreguntasPage implements OnInit {
 
   selectedSegment: string = '0'
 
-  constructor(private appService: AppService, private uiService: UiService) { }
+  constructor(private appService: AppService, private uiService: UiService, private helper: HelperService) { }
 
   ngOnInit() {
     this.indices = this.appService.getIndices();
@@ -80,35 +81,33 @@ export class PreguntasPage implements OnInit {
   }
 
   updateAccesibilidad(val) {
-    this.indices.accesibilidad = val;
+    this.indices.accesibilidad = this.helper.round(val);
     this.calcularIndiceOportunidadExtincion();
   }
 
   updateMovilidad(val) {
-    this.indices.movilidad = val;
+    this.indices.movilidad = this.helper.round(val);
     this.calcularIndiceOportunidadExtincion();
   }
 
   updateApertura(val) {
-    this.indices.apertura = val;
+    this.indices.apertura = this.helper.round(val);
     this.calcularIndiceOportunidadExtincion();
   }
 
   updatePenetrabilidad(val) {
-    this.indices.penetrabilidad = val;
+    this.indices.penetrabilidad = this.helper.round(val);
     this.calcularIndiceOportunidadExtincion();
   }
 
   updateMedios(val) {
-    this.indices.mediosAereos = val;
+    this.indices.mediosAereos = this.helper.round(val);
     this.calcularIndiceOportunidadExtincion();
   }
 
   calcularIndiceOportunidadExtincion() {
-    if (this.indices.accesibilidad !== 0 && this.indices.movilidad !== 0 && this.indices.apertura !== 0 && this.indices.penetrabilidad !== 0 && this.indices.mediosAereos !== 0) {
-      this.indices.oportunidadExtincion = this.indices.accesibilidad + this.indices.movilidad + this.indices.apertura + this.indices.penetrabilidad + this.indices.mediosAereos;
-      this.indices.oportunidadExtincion = parseFloat(this.indices.oportunidadExtincion.toFixed(3));
-    }
+    this.indices.oportunidadExtincion = this.indices.accesibilidad + this.indices.movilidad + this.indices.apertura + this.indices.penetrabilidad + this.indices.mediosAereos;
+    this.indices.oportunidadExtincion = parseFloat(this.indices.oportunidadExtincion.toFixed(3)); 
   }
 
   segmentSelected(index: number) {

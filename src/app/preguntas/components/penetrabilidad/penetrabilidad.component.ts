@@ -16,7 +16,7 @@ export class PenetrabilidadComponent implements OnInit {
   pesoPendiente: number;
   pesoExposicion: number;
 
-  penetrabilidad: number = 0;
+  penetrabilidad: number;
 
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();

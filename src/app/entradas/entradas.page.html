@@ -54,13 +54,9 @@
       <ion-col sizeXl="6" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'velocidadViento10metros' | translate}}</ion-label>
-          <ion-select cancelText="{{'Cancelar' | translate}}" #velocidadViento10metrosSelect
-            [value]="velocidadViento10metrosSelected"
-            (ionChange)="updateVelocidadViento10metros(velocidadViento10metrosSelect.value)">
-            <ion-select-option *ngFor="let velocidad of variables.velocidadViento" [value]="velocidad.value" [disabled]="velocidad.disabled">
-              {{velocidad.value}}
-            </ion-select-option>
-          </ion-select>
+          <ion-input type="number" #velocidadViento10metrosInput (keypress)="numberOnlyValidation($event)"
+            (ionBlur)="checkValue()" (ionInput)="updateVelocidadViento10metros(velocidadViento10metrosInput.value)" [(ngModel)]="velocidadViento10metrosSelected">
+          </ion-input>
         </ion-item>
       </ion-col>
       <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">

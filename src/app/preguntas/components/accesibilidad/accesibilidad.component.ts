@@ -11,7 +11,7 @@ export class AccesibilidadComponent implements OnInit {
   pesoPresencia: string;
   pesoDistancia: string;
 
-  accesibilidad: number = 0;
+  accesibilidad: number;
 
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();

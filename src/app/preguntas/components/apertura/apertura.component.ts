@@ -16,7 +16,7 @@ export class AperturaComponent implements OnInit {
   cm: number;
   ce: number;
 
-  apertura: number = 0;
+  apertura: number;
 
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();

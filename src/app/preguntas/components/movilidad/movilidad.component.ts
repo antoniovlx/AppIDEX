@@ -9,7 +9,7 @@ export class MovilidadComponent implements OnInit {
   pesoCortafuego: string;
   pesoDistancia: string;
 
-  movilidad: number = 0;
+  movilidad: number;
 
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();

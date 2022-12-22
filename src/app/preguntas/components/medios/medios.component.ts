@@ -12,7 +12,7 @@ export class MediosComponent implements OnInit {
   distanciaAvionesAnfibios: string;
   distanciaAvionesCarga: string;
 
-  medios: number = 0;
+  medios: number;
 
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();

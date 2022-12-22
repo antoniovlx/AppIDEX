@@ -41,7 +41,8 @@ export class Indice {
     iceEruptivo: number = 0;
 
     get comportamientoEnergetico() {
-        return (this.iceSuperficial + this.iceCopas + this.iceEruptivo).toFixed(2);
+        const valor = this.iceSuperficial + this.iceCopas + this.iceEruptivo;
+        return valor !== 0 ? valor.toFixed(2) : 0;
     }
 
     clearIces() {
@@ -51,7 +52,7 @@ export class Indice {
     }
 
     get idex() {
-        if (this.iceSuperficial !== 0 || this.iceCopas !== 0 || this.iceEruptivo !== 0) {
+        if ((this.iceSuperficial !== 0 || this.iceCopas !== 0 || this.iceEruptivo !== 0) && this.oportunidadExtincion !== 0) {
             return parseFloat(((this.iceSuperficial + this.iceCopas + this.iceEruptivo) / this.oportunidadExtincion).toFixed(2));
         } else {
             return 0;

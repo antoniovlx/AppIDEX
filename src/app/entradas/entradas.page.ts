@@ -150,25 +150,25 @@ export class EntradasPage implements OnInit {
   updateVelocidadVientoLlamaSuperficie(val: string) {
     this.velocidadVientoLlamaSuperficieSelected = val;
     this.entradas.velocidadVientoLlama = parseInt(this.velocidadVientoLlamaSuperficieSelected);
-    this.updateValidadValuesVelocidad10m();
     this.calcularIces();
   }
 
-  private updateValidadValuesVelocidad10m() {
-    this.variables.velocidadViento.forEach(velocidad => {
-      let value = velocidad.value;
-      if (value.includes('>')) value = velocidad.value.substring(1)
-
-      if (parseInt(value) <= this.entradas.velocidadVientoLlama)
-        velocidad.disabled = true;
-    })
-  }
-
-  updateVelocidadViento10metros(val: string) {
+  updateVelocidadViento10metros(val) {
     this.velocidadViento10metrosSelected = val;
-    this.entradas.velocidadViento10metros = parseInt(this.velocidadViento10metrosSelected);
-    this.calcularIces();
+    if (this.velocidadViento10metrosSelected !== '') {
+      this.entradas.velocidadViento10metros = parseFloat(this.velocidadViento10metrosSelected);
+      this.calcularIces();
+    } else {
+      this.calculosService.clearIces();
+    }
+  }
 
+  checkValue(){
+    if(this.entradas.velocidadViento10metros <= this.entradas.velocidadVientoLlama){
+      this.uiService.avisoAlert("Aviso", "Velocidad viento a 10m debe ser mayor que la velocidad viento media llama");
+      this.entradas.velocidadViento10metros = 0;
+      this.velocidadViento10metrosSelected = "";
+    }
   }
 
 
@@ -177,12 +177,19 @@ export class EntradasPage implements OnInit {
     if (this.densidadPiesSelected !== '') {
       this.entradas.copas.densidadPies = parseFloat(this.densidadPiesSelected);
       this.calcularIces();
+    } else {
+      this.calculosService.clearIces();
     }
   }
 
   updateFraccionCopa(val: string) {
     this.fraccionCopaCubiertaSelected = val;
-    this.entradas.copas.fraccionCopaCubierta = parseFloat(this.fraccionCopaCubiertaSelected) / 100;
+    if(val !== undefined){
+      this.entradas.copas.fraccionCopaCubierta = parseFloat(this.fraccionCopaCubiertaSelected) / 100;
+    }else{
+      this.entradas.copas.fraccionCopaCubierta = undefined
+    }
+
     this.calcularIces();
   }
 
@@ -197,7 +204,7 @@ export class EntradasPage implements OnInit {
     if (this.diametroTroncoSelected !== '') {
       this.entradas.diametroTronco = parseFloat(this.diametroTroncoSelected);
       this.calcularIces();
-    }else{
+    } else {
       this.calculosService.clearIces();
     }
   }

@@ -21,5 +21,12 @@ describe('EntradasPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
+  it('should introduce correct values', () =>{
+    component.tipoModeloSelected = "Behave"
+    component.modeloSelected = '2';
+
+    fixture.nativeElement.querySelect('button').click();
+
+  });
 });
