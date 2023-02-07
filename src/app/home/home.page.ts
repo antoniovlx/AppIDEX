@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
   comportamientoFuegoCompleted: boolean = true;
   costesCompleted: boolean = true;
 
-  constructor( private router: Router, private util: UtilService, public uiService: UiService) { }
+  constructor( private router: Router, public uiService: UiService) { }
 
   ngOnInit() {
     this.title = this.router.url;

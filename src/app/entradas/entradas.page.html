@@ -39,7 +39,16 @@
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
+      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'velocidadViento10metros' | translate}}</ion-label>
+          <ion-input type="number" #velocidadViento10metrosInput (keypress)="numberOnlyValidation($event)"
+            (ionBlur)="checkValue()" (ionInput)="updateVelocidadViento10metros(velocidadViento10metrosInput.value)"
+            [(ngModel)]="velocidadViento10metrosSelected">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <!--<ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'velocidadVientoLlama' | translate}}</ion-label>
           <ion-select cancelText="{{'Cancelar' | translate}}" #velocidadVientoLlamaSelect
@@ -50,16 +59,47 @@
             </ion-select-option>
           </ion-select>
         </ion-item>
-      </ion-col>
-      <ion-col sizeXl="6" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
-          <ion-label position="stacked">{{'velocidadViento10metros' | translate}}</ion-label>
-          <ion-input type="number" #velocidadViento10metrosInput (keypress)="numberOnlyValidation($event)"
-            (ionBlur)="checkValue()" (ionInput)="updateVelocidadViento10metros(velocidadViento10metrosInput.value)" [(ngModel)]="velocidadViento10metrosSelected">
+          <ion-label position="stacked">{{'velocidadVientoLlama' | translate}}</ion-label>
+          <ion-input type="number" [(ngModel)]="velocidadVientoLlamaSuperficieSelected" [readonly]="true">
+          </ion-input>
+        </ion-item>
+      </ion-col>-->
+      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'exposicion' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #exposicionesSelect [value]="exposicionSelected"
+            (ionChange)="updateExposicion(exposicionesSelect.value)">
+            <ion-select-option *ngFor="let exposicion of variables.exposiciones" [value]="exposicion.peso">
+              {{exposicion.valor}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'diametroTronco' | translate}} </ion-label>
+          <ion-input type="number" #diametroTroncoInput (keypress)="numberOnlyValidation($event)"
+            (ionInput)="updateDiametroTronco(diametroTroncoInput.value)" [(ngModel)]="diametroTroncoSelected">
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
+      <ion-col sizeXl="12" sizeLg="6" sizeMd="12" sizeSm="12" sizeXs="12">
+        <ion-item>
+          <ion-label position="stacked">{{'humedadFinoMuerto' | translate}}</ion-label>
+          <ion-select cancelText="{{'Cancelar' | translate}}" #humedadSelected [value]="humedadFinoMuertoSelected"
+            (ionChange)="updateHumedadFinoMuerto(humedadSelected.value)">
+            <ion-select-option *ngFor="let humedad of variables.humedadFinoMuerto" [value]="humedad">
+              {{humedad}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <titulo-apartado [imagePath]="'./assets/img/copas.png'" [titulo]="'Copas'">
+    </titulo-apartado>
+    <ion-row>
+      <ion-col sizeXl="4" sizeLg="6" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'isProbabilidadFuegoCopas' | translate}}</ion-label>
           <ion-select cancelText="{{'Cancelar' | translate}}" #probabilidadFuegoCopasSelect
@@ -70,7 +110,7 @@
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="6">
         <ion-item>
           <ion-label position="stacked">{{'especie' | translate}}</ion-label>
           <ion-select cancelText="{{'Cancelar' | translate}}" #especieSelect [value]="especieSelected"
@@ -81,7 +121,7 @@
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="12">
+      <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="6" sizeXs="6">
         <ion-item>
           <ion-label position="stacked">{{'densidadPies' | translate}}</ion-label>
           <ion-input type="number" #densidadPiesSelect (keypress)="numberOnlyValidation($event)"
@@ -90,7 +130,7 @@
           </ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
+      <ion-col sizeXl="6" sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'fraccionCopaCubierta' | translate}}</ion-label>
           <ion-select cancelText="{{'Cancelar' | translate}}" #franccionCopaSelect [disabled]="hayCopas()"
@@ -101,7 +141,7 @@
           </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
+      <ion-col sizeXl="6" sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'longitudCopa' | translate}}</ion-label>
           <ion-input type="number" #longitudCopaInput (keypress)="numberOnlyValidation($event)"
@@ -109,7 +149,11 @@
             [disabled]="hayCopas()"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="12" sizeXs="12">
+    </ion-row>
+    <titulo-apartado [imagePath]="'./assets/img/eruptivo.png'" [titulo]="'Eruptivo'">
+    </titulo-apartado>
+    <ion-row>
+      <ion-col sizeXl="4" sizeLg="12" sizeMd="12" sizeSm="12" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'isProbabilidadFuegoEruptivo' | translate}}</ion-label>
           <ion-select cancelText="{{'Cancelar' | translate}}" #probabilidadFuegoEruptivoSelect
@@ -123,47 +167,19 @@
       <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'aberturaLaderas' | translate}}</ion-label>
-          <ion-input type="number" #aberturaLaderasInput (keypress)="numberOnlyValidation($event)" [disabled]="hayEruptivo()"
-            (ionInput)="updateAberturaLaderas(aberturaLaderasInput.value)" [(ngModel)]="aberturaLaderasSelected">
+          <ion-input type="number" #aberturaLaderasInput (keypress)="numberOnlyValidation($event)"
+            [disabled]="hayEruptivo()" (ionInput)="updateAberturaLaderas(aberturaLaderasInput.value)"
+            [(ngModel)]="aberturaLaderasSelected">
           </ion-input>
         </ion-item>
       </ion-col>
       <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
         <ion-item>
           <ion-label position="stacked">{{'pendienteCauce' | translate}}</ion-label>
-          <ion-input type="number" #pendienteCauceInput (keypress)="numberOnlyValidation($event)" [disabled]="hayEruptivo()"
-            (ionInput)="updatePendienteCauce(pendienteCauceInput.value)" [(ngModel)]="pendienteCauceSelected">
+          <ion-input type="number" #pendienteCauceInput (keypress)="numberOnlyValidation($event)"
+            [disabled]="hayEruptivo()" (ionInput)="updatePendienteCauce(pendienteCauceInput.value)"
+            [(ngModel)]="pendienteCauceSelected">
           </ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col sizeXl="4" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
-        <ion-item>
-          <ion-label position="stacked">{{'exposicion' | translate}}</ion-label>
-          <ion-select cancelText="{{'Cancelar' | translate}}" #exposicionesSelect [value]="exposicionSelected"
-            (ionChange)="updateExposicion(exposicionesSelect.value)">
-            <ion-select-option *ngFor="let exposicion of variables.exposiciones" [value]="exposicion.peso">
-              {{exposicion.valor}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col sizeXl="6" sizeLg="6" sizeMd="12" sizeSm="6" sizeXs="12">
-        <ion-item>
-          <ion-label position="stacked">{{'diametroTronco' | translate}} </ion-label>
-          <ion-input type="number" #diametroTroncoInput (keypress)="numberOnlyValidation($event)"
-            (ionInput)="updateDiametroTronco(diametroTroncoInput.value)" [(ngModel)]="diametroTroncoSelected">
-          </ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col sizeXl="6" sizeLg="6" sizeMd="12" sizeSm="12" sizeXs="12">
-        <ion-item>
-          <ion-label position="stacked">{{'humedadFinoMuerto' | translate}}</ion-label>
-          <ion-select cancelText="{{'Cancelar' | translate}}" #humedadSelected [value]="humedadFinoMuertoSelected"
-            (ionChange)="updateHumedadFinoMuerto(humedadSelected.value)">
-            <ion-select-option *ngFor="let humedad of variables.humedadFinoMuerto" [value]="humedad">
-              {{humedad}}
-            </ion-select-option>
-          </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>

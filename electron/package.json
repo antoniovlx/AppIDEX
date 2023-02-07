@@ -1,10 +1,10 @@
 {
   "name": "appidex-desktop",
   "productName": "AppIDEX",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "AppIDEX",
   "author": {
-    "name": "Antonio Vida",
+    "name": "LABIF UCO",
     "email": "i42vilua@uco.es"
   },
   "repository": {

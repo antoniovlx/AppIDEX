@@ -1,9 +1,9 @@
 {
   "name": "appidex",
   "productName": "AppIDEX",
-  "version": "1.0.5",
-  "author": "Antonio Vida",
-  "homepage": "https://www.labif-uco.com/",
+  "version": "1.0.6",
+  "author": "LABIF-UCO",
+  "homepage": "https://www.labif.es/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

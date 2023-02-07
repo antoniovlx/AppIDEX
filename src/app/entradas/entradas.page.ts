@@ -47,6 +47,7 @@ export class EntradasPage implements OnInit {
 
   pesos: PesosModelos;
   entradas: variables.Input;
+  formIsFilled: boolean = false;
 
   constructor(private cd: ChangeDetectorRef, private appService: AppService, private calculosService: CalculosService, private uiService: UiService, private render2: Renderer2) {
 
@@ -70,6 +71,12 @@ export class EntradasPage implements OnInit {
 
   isDisabled() {
 
+  }
+
+  ionViewWillLeave() {
+    if (!this.formIsFilled) {
+      this.uiService.avisoAlert("Aviso", "mensaje faltan datos", "home/entradas");
+    }
   }
 
   updatePendientes(pendiente: string) {
@@ -157,14 +164,18 @@ export class EntradasPage implements OnInit {
     this.velocidadViento10metrosSelected = val;
     if (this.velocidadViento10metrosSelected !== '') {
       this.entradas.velocidadViento10metros = parseFloat(this.velocidadViento10metrosSelected);
-      this.calcularIces();
+
+      this.entradas.velocidadVientoLlama = this.calculosService.getVelocidadVientoLlamaCopas(this.entradas.velocidadViento10metros * 0.4);
+      
+      this.updateVelocidadVientoLlamaSuperficie(this.entradas.velocidadVientoLlama.toString())
+
     } else {
       this.calculosService.clearIces();
     }
   }
 
-  checkValue(){
-    if(this.entradas.velocidadViento10metros <= this.entradas.velocidadVientoLlama){
+  checkValue() {
+    if (this.entradas.velocidadViento10metros <= this.entradas.velocidadVientoLlama) {
       this.uiService.avisoAlert("Aviso", "Velocidad viento a 10m debe ser mayor que la velocidad viento media llama");
       this.entradas.velocidadViento10metros = 0;
       this.velocidadViento10metrosSelected = "";
@@ -184,9 +195,9 @@ export class EntradasPage implements OnInit {
 
   updateFraccionCopa(val: string) {
     this.fraccionCopaCubiertaSelected = val;
-    if(val !== undefined){
+    if (val !== undefined) {
       this.entradas.copas.fraccionCopaCubierta = parseFloat(this.fraccionCopaCubiertaSelected) / 100;
-    }else{
+    } else {
       this.entradas.copas.fraccionCopaCubierta = undefined
     }
 
@@ -261,12 +272,16 @@ export class EntradasPage implements OnInit {
 
   private checkEntradas(entradas) {
     for (const key in entradas) {
-      if (entradas[key] === undefined)
-        return false;
+      /*if (entradas[key] === undefined)
+        return false;*/
 
-      if (typeof entradas[key] === 'number' && isNaN(entradas[key]))
+      if (entradas[key] === undefined || (typeof entradas[key] === 'number' && isNaN(entradas[key]))) {
+        this.formIsFilled = false;
         return false;
+      }
+
     }
+    this.formIsFilled = true;
     return true;
   }
 }

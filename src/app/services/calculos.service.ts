@@ -123,7 +123,7 @@ export class CalculosService {
   }
 
   private async calcularVelocidadPropagacionCopas() {
-    this.entradas.velocidadVientoLlama = this.getVelocidadVientoLlamaCopas(this.entradas.velocidadViento10metros * 0.4);
+    //this.entradas.velocidadVientoLlama = this.getVelocidadVientoLlamaCopas(this.entradas.velocidadViento10metros * 0.4);
     this.entradas.modelo = "HPM5";
 
     const vrf = await this.calcularVrf();
@@ -147,7 +147,7 @@ export class CalculosService {
     return velocidadPropagacion * 1.7 * 3.34;
   }
 
-  private getVelocidadVientoLlamaCopas(velocidad: number): number {
+  public getVelocidadVientoLlamaCopas(velocidad: number): number {
     if (velocidad >= 0 && velocidad < 4) {
       return 0;
     } else if (velocidad >= 4 && velocidad < 8) {

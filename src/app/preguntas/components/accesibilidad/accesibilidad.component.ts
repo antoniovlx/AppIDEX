@@ -39,7 +39,13 @@ export class AccesibilidadComponent implements OnInit {
 
   calcularAccesibilidad(){
     if(this.pesoDistancia !== undefined && this.pesoPresencia !== undefined){
-      this.accesibilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoPresencia)
+
+      if(this.pesoPresencia === '-1'){
+        this.accesibilidad = 1;
+      }else{
+        this.accesibilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoPresencia)
+      }
+      
       this.onInputChange.emit(this.accesibilidad);
     }
   }

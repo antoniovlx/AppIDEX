@@ -4,7 +4,7 @@
       <ion-label position="stacked">{{'Presencia de viajes transitables para autobomba' | translate}}</ion-label>
       <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #presencia [value]="pesoPresencia"
         (ionChange)="updatePresencia(presencia.value)">
-        <ion-select-option value="0">{{'NO' | translate}}</ion-select-option>
+        <ion-select-option value="-1">{{'No, sin presencia de caminos' | translate}}</ion-select-option>
         <ion-select-option value="1">{{'Carretera con faja auxiliar' | translate}}</ion-select-option>
         <ion-select-option value="0.9">{{'Carretera sin faja auxiliar' | translate}}</ion-select-option>
         <ion-select-option value="0.8">{{'Camino principal con faja auxiliar' | translate}}</ion-select-option>

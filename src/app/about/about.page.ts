@@ -24,7 +24,6 @@ export class AboutPage implements OnInit, AfterViewInit {
     this.uiService.getTopScrolled$().subscribe(scrolled => {
       this.content.scrollToTop();
     });
-
   }
 
   ionViewWillEnter(){

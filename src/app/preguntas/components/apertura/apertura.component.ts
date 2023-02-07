@@ -64,11 +64,11 @@ export class AperturaComponent implements OnInit {
 
       if (this.cm !== undefined && this.ce !== undefined) {
         if (this.isLimitante === 'si') {
-          this.apertura = this.cm * this.manual;
+          this.apertura = (this.cm * this.manual) / 2;
         } else {
-          this.apertura = this.cm * this.manual + this.ce * this.mecanizado
+          this.apertura = (this.cm * this.manual + this.ce * this.mecanizado) / 2
         }
-        this.onInputChange.emit(this.apertura / 2);
+        this.onInputChange.emit(this.apertura);
       }
     }
     else {

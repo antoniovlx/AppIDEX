@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom, Subject } from 'rxjs';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UiService {
   private selectTab$ = new Subject<string>();
 
   constructor(private loadingController: LoadingController, public toastController: ToastController,
-     private translate: TranslateService, private alertController: AlertController, private router: Router) { }
+     private translate: TranslateService, private alertController: AlertController, private utilService: UtilService, private router: Router) { }
 
 
   public async presentLoading(message: string) {
@@ -129,6 +130,9 @@ export class UiService {
     const promise = new Promise<boolean>(resolve => {
       resolveFunction = resolve;
     });
+
+    message = await this.utilService.getTranslate(message);
+    
     const alert = await this.alertController.create({
       header: titulo,
       message,

@@ -46,7 +46,12 @@ export class MovilidadComponent implements OnInit {
 
   calcularMovilidad() {
     if (this.pesoDistancia !== undefined && this.pesoCortafuego !== undefined) {
-      this.movilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoCortafuego)
+      if(this.pesoCortafuego === '-1'){
+        this.movilidad = 1;
+      }else{
+        this.movilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoCortafuego)
+      }
+      
       this.onInputChange.emit(this.movilidad);
     }
   }
