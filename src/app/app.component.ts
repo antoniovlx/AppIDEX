@@ -54,27 +54,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.initializeApp();
   }
-
-  ngOnInit() {
-  
-  }
-
-  ngAfterViewInit() {
-
-  }
-
-  initializeApp() {
-    this.platform.ready().then(async () => {
-      await this.ormService.initialize();
-    });
-  }
-
-  openHelp() {
-
-  }
-
-  get appPages() {
-    return appPages;
+  @HostListener('window:scroll') onScroll(e: Event): void {
+    console.log(this.getYPosition(e));
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -107,6 +88,30 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  initializeApp() {
+    this.platform.ready().then(async () => {
+      await this.ormService.initialize();
+    });
+  }
+
+  openHelp() {
+
+  }
+
+  get appPages() {
+    return appPages;
+  }
+
+
+
   async testDB() {
     try {
       console.log(`going to create a connection`);
@@ -135,9 +140,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.uiService.scrollTop$(true);
   }
 
-  @HostListener('window:scroll') onScroll(e: Event): void {
-    console.log(this.getYPosition(e));
-  }
 
   getYPosition(e: Event): number {
     return (e.target as Element).scrollTop;

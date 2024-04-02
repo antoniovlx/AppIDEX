@@ -1,4 +1,3 @@
-
 export const pendientes = ['0', '15', '30', '45', '60', '90'];
 export const exposiciones =
     [{ valor: 'N', peso: 10 },
@@ -165,7 +164,7 @@ export class Input {
         this.copas = new InputCopas();
         this.eruptivo = new InputEruptivo();
     }
-    
+
     static getTestInputWithCopasSelected(): Input {
         const entradas = new Input();
 

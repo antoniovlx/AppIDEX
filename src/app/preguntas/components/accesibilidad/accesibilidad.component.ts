@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { IonSelect } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -8,16 +9,19 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class AccesibilidadComponent implements OnInit {
 
-  pesoPresencia: string;
-  pesoDistancia: string;
-
-  accesibilidad: number;
-
   @Output()
   onClickNext: EventEmitter<number> = new EventEmitter();
 
   @Output()
   onInputChange: EventEmitter<number> = new EventEmitter();
+
+  @ViewChild('distancia')
+  distanciaSelector: IonSelect;
+
+  pesoPresencia: string;
+  pesoDistancia: string;
+
+  accesibilidad: number;
 
   constructor() { }
 
@@ -25,6 +29,14 @@ export class AccesibilidadComponent implements OnInit {
 
   updatePresencia(val: string) {
     this.pesoPresencia = val;
+
+    if(this.pesoPresencia === '-1'){
+      this.pesoDistancia = '3';
+      this.distanciaSelector.disabled = true;
+    }else{
+      this.distanciaSelector.disabled = false;
+    }
+
     this.calcularAccesibilidad();
   }
 
@@ -43,9 +55,9 @@ export class AccesibilidadComponent implements OnInit {
       if(this.pesoPresencia === '-1'){
         this.accesibilidad = 1;
       }else{
-        this.accesibilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoPresencia)
+        this.accesibilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoPresencia);
       }
-      
+
       this.onInputChange.emit(this.accesibilidad);
     }
   }

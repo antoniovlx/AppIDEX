@@ -166,7 +166,7 @@ export class EntradasPage implements OnInit {
       this.entradas.velocidadViento10metros = parseFloat(this.velocidadViento10metrosSelected);
 
       this.entradas.velocidadVientoLlama = this.calculosService.getVelocidadVientoLlamaCopas(this.entradas.velocidadViento10metros * 0.4);
-      
+
       this.updateVelocidadVientoLlamaSuperficie(this.entradas.velocidadVientoLlama.toString())
 
     } else {
@@ -261,6 +261,7 @@ export class EntradasPage implements OnInit {
           await this.calculosService.calculateIceCopas();
         }
       }
+
 
       if (this.entradas.isProbabilidadFuegoEruptivo === true) {
         if (this.checkEntradas(this.entradas.eruptivo) === true) {
