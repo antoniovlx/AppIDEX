@@ -25,7 +25,9 @@ export class ResultadosPage implements OnInit {
   loader: HTMLIonLoadingElement;
   loaderLoading: boolean;
 
-  constructor(private appService: AppService, private uiService: UiService, private utilService: UtilService) { }
+  constructor(private appService: AppService,
+    private uiService: UiService,
+    private utilService: UtilService) { }
 
   ngOnInit() {
     this.indice = this.appService.getIndices();
@@ -36,14 +38,11 @@ export class ResultadosPage implements OnInit {
   }
 
   async downloadCsv() {
-    this.uiService.presentLoading("Exportando...");
+    this.uiService.presentLoading('Exportando...');
 
     //let blob = await this.utilService.parseDataToBlob();
 
-    let blob = await this.utilService.generarInformeExcel();
-
-    this.utilService.saveFile(blob, "AppIDEX");
-
-    this.uiService.dismissLoading();
+    const blob = await this.utilService.generarInformeExcel();
+    this.uiService.saveFile(blob, 'AppIDEX');
   }
 }

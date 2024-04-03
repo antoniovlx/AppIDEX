@@ -5,6 +5,10 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom, Subject } from 'rxjs';
 import { UtilService } from './util.service';
+import { AppService } from './app.service';
+import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
+import * as FileSaver from 'file-saver';
+import { Directory, Filesystem } from '@capacitor/filesystem';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +20,67 @@ export class UiService {
   private isTopScrolled$ = new Subject<boolean>();
   private selectTab$ = new Subject<string>();
 
-  constructor(private loadingController: LoadingController, public toastController: ToastController,
-     private translate: TranslateService, private alertController: AlertController, private utilService: UtilService, private router: Router) { }
+  constructor(private loadingController: LoadingController,
+     private appService: AppService,
+     public toastController: ToastController,
+     private translate: TranslateService,
+     private alertController: AlertController,
+     private fileOpener: FileOpener,
+     private utilService: UtilService, private router: Router) {
+      console.log('UiService constructor');
+
+     }
+
+   async saveFile(data: Blob, fileName: string) {
+      const now = new Date(Date.now());
+      const formattedDateTime = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}_${now.getHours()}_${now.getMinutes()}`;
+      if (this.appService.isMobile()) {
+        this.writeAndOpenFile(data, `${fileName}_${formattedDateTime}.xlsx`);
+      } else {
+        FileSaver.saveAs(data, `${fileName}_${formattedDateTime}.xlsx`);
+        this.presentToast('Datos exportados correctamente');
+      }
+      this.dismissLoading();
+    }
+
+    async writeAndOpenFile(data: Blob, fileName: string) {
+      const reader = new FileReader();
+      reader.readAsDataURL(data);
+      const that = this;
+      reader.onloadend = async () => {
+        const base64data = reader.result;
+        try {
+          const result = await Filesystem.writeFile({
+            path: fileName,
+            data: base64data as string,
+            directory: Directory.Data,
+            recursive: true
+          });
+
+          that.presentToast('Datos exportados correctamente');
+
+          let type = data.type;
+          if(data.type === 'application/octet-stream'){
+            type = 'application/vnd.ms-excel';
+          }
+
+          that.fileOpener.showOpenWithDialog(result.uri, type)
+            .then(() => {
+              console.log('File is opened');
+            })
+            .catch(e => {
+              console.log('Error opening file', e);
+              that.presentAlertToast('Error opening file');
+            });
+
+
+
+          console.log('Wrote file', result.uri);
+        } catch (e) {
+          console.error('Unable to write file', e);
+        }
+      };
+    }
 
 
   public async presentLoading(message: string) {
@@ -46,7 +109,7 @@ export class UiService {
   }
 
 
-  selectTab(title:string) {
+  selectTab(title: string) {
     this.selectTab$.next(title);
   }
 
@@ -55,17 +118,17 @@ export class UiService {
   }
 
 
-  presentToast(message: string) {
+  public presentToast(message: string) {
     this.translate.get(message).subscribe(async (res: string) => {
       const toast = await this.toastController.create({
         message: res,
-        color: "primary",
+        color: 'primary',
         icon: 'information-circle',
         position: 'top',
         cssClass: 'toast-message',
         buttons: [
           {
-            text: "OK"
+            text: 'OK'
           }
         ]
       });
@@ -77,7 +140,7 @@ export class UiService {
   async presentAlertToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      color: "danger",
+      color: 'danger',
       duration: 4000,
       position: 'top',
       icon: 'alert-circle-outline',
@@ -87,7 +150,7 @@ export class UiService {
           text: 'Aceptar',
           role: 'cancel',
           handler: () => {
-            
+
           }
         }
       ]*/
@@ -132,7 +195,7 @@ export class UiService {
     });
 
     message = await this.utilService.getTranslate(message);
-    
+
     const alert = await this.alertController.create({
       header: titulo,
       message,
@@ -158,15 +221,15 @@ export class UiService {
 
   async createMessageAviso(datos: string[]) {
     let mensaje = await firstValueFrom(this.translate.get('Antes de continuar debe introducir:'));
-    mensaje += "<ul>"
+    mensaje += '<ul>'
     for (let index = 0; index < datos.length; index++) {
       let dato = datos[index];
-      mensaje += "<li>"
+      mensaje += '<li>'
       dato = await firstValueFrom(this.translate.get(dato));
       mensaje += dato;
-      mensaje += "</li>"
+      mensaje += '</li>'
     }
-    mensaje += "</ul>"
+    mensaje += '</ul>'
     return mensaje;
   }
 }

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as XLSX from "xlsx";
+import * as XLSX from 'xlsx';
 import { TranslateService } from '@ngx-translate/core';
 import { UiService } from './ui.service';
 import { AppService } from './app.service';
-import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
-import * as FileSaver from 'file-saver';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import { firstValueFrom, Observable } from 'rxjs';
 import Papa from 'papaparse';
@@ -13,11 +11,10 @@ import Papa from 'papaparse';
   providedIn: 'root'
 })
 export class UtilService {
-  isMobile: boolean = false;
+  isMobile = false;
 
   constructor(private appService: AppService,
-    private translateService: TranslateService,
-    private uiService: UiService, private fileOpener: FileOpener) {
+    private translateService: TranslateService) {
 
   }
 
@@ -34,12 +31,11 @@ export class UtilService {
 
   async parseDataToBlob() {
     const data = Papa.unparse({
-      "fields": ["Variable", "Value"],
-      "data": await this.prepareResultData()
+      'fields': ['Variable', 'Value'],
+      'data': await this.prepareResultData()
     });
 
-    let blob = new Blob([data], { type: "text/csv" });
-    return blob;
+    return new Blob([data], { type: 'text/csv' });;
   }
 
   async prepareResultData() {
@@ -54,7 +50,7 @@ export class UtilService {
   }
 
   async getArrayOfDataTranslated(object) {
-    let data = [];
+    const data = [];
     for (const key in object) {
       if (typeof object[key] === 'object') {
         for (const keyObject in object[key]) {
@@ -67,68 +63,15 @@ export class UtilService {
     return data;
   }
 
-
-  async saveFile(data: Blob, fileName: string) {
-    let now = new Date(Date.now())
-    var formattedDateTime = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}_${now.getHours()}_${now.getMinutes()}`;
-   
-    if (this.appService.isMobile()) {
-      this.writeAndOpenFile(data, `${fileName}_${formattedDateTime}.xlsx`);
-    } else {
-      FileSaver.saveAs(data, `${fileName}_${formattedDateTime}.xlsx`);
-      this.uiService.presentToast("Datos exportados correctamente");
-    }
-    this.uiService.dismissLoading();
-  }
-
   async generarInformeExcel() {
 
-    let data = await this.prepareResultData();
+    const data = await this.prepareResultData();
 
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data, { skipHeader: true });
     const workbook: XLSX.WorkBook = { Sheets: { 'idex': worksheet }, SheetNames: ['idex'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-    return new Blob([excelBuffer], { type: "application/octet-stream" });
-  }
-
-  async writeAndOpenFile(data: Blob, fileName: string) {
-    var reader = new FileReader();
-    reader.readAsDataURL(data);
-    const that = this;
-    reader.onloadend = async function () {
-      var base64data = reader.result;
-      try {
-        const result = await Filesystem.writeFile({
-          path: fileName,
-          data: <string>base64data,
-          directory: Directory.Data,
-          recursive: true
-        });
-
-        that.uiService.presentToast("Datos exportados correctamente");
-
-        let type = data.type;
-        if(data.type === 'application/octet-stream'){
-          type = 'application/vnd.ms-excel';
-        }
-
-        that.fileOpener.showOpenWithDialog(result.uri, type)
-          .then(() => {
-            console.log('File is opened');
-          })
-          .catch(e => {
-            console.log('Error opening file', e);
-            that.uiService.presentAlertToast("Error opening file");
-          });
-
-     
-
-        console.log('Wrote file', result.uri);
-      } catch (e) {
-        console.error('Unable to write file', e);
-      }
-    }
+    return new Blob([excelBuffer], { type: 'application/octet-stream' });
   }
 
   writeXLSX(workbook, wopts) {
@@ -143,7 +86,7 @@ export class UtilService {
     return ws;
   }
 
-  init_sheet(data: any[], skipHeader: boolean): XLSX.WorkSheet {
+  initSheet(data: any[], skipHeader: boolean): XLSX.WorkSheet {
     return XLSX.utils.json_to_sheet(data, { skipHeader: skipHeader });
   }
 

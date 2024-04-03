@@ -11,14 +11,16 @@ import { Indice, Input } from '../shared/model/modelData';
   providedIn: 'root'
 })
 export class AppService {
-  private indice: Indice = new Indice();
-  private entradas: Input = new Input();
-
   pendienteChanged = new ReplaySubject<Pendientes>();
   modeloChanged = new ReplaySubject<any>();
   exposicionChanged = new ReplaySubject<number>();
 
-  constructor(private platform: Platform, private pesosModelosRepository: PesosModelosRepository, private pendientesRepository: PendientesRepository) { }
+  private indice: Indice = new Indice();
+  private entradas: Input = new Input();
+
+  constructor(private platform: Platform,
+    private pesosModelosRepository: PesosModelosRepository,
+    private pendientesRepository: PendientesRepository) { }
 
   public isMobile() {
     return this.platform.is('mobile');
