@@ -7,7 +7,7 @@
       {{ resultado | number : '1.0-2' }}
     </span>
     <span *ngIf="tituloResultado === 'idex';" [ngStyle]="{'color':labelColor}">
-      ({{ resultLabel }})
+      ({{ resultLabel | translate }})
     </span>
     <ng-template #noData>
       <span style="color: red">

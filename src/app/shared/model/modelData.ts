@@ -57,7 +57,7 @@ export class Indice {
 
   get idexLabel() {
     if (this.idex > 0 && this.idex <= 0.1) {
-      return 'Muy Baja';
+      return 'Muy baja';
     } else if (this.idex > 0.1 && this.idex <= 0.2) {
       return 'Baja';
     } else if (this.idex > 0.2 && this.idex <= 0.3) {
@@ -65,7 +65,7 @@ export class Indice {
     }else if (this.idex > 0.3 && this.idex <= 0.6) {
       return 'Alta';
     } else if (this.idex > 0.6 && this.idex <= 1) {
-      return 'Muy Alta';
+      return 'Muy alta';
     } else if (this.idex > 1) {
       return 'Extrema';
     } else{
