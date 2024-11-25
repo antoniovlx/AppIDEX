@@ -72,7 +72,7 @@ export class AperturaComponent implements OnInit {
       }
     }
     else {
-      this.textWarningData = "Pendiente del terreno y modelo de combustible";
+      this.textWarningData = 'Pendiente del terreno y modelo de combustible';
     }
   }
 }
