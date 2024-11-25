@@ -6,10 +6,13 @@
     <span *ngIf="resultado !== undefined;else noData">
       {{ resultado | number : '1.0-2' }}
     </span>
+    <span *ngIf="tituloResultado === 'idex';" [ngStyle]="{'color':labelColor}">
+      ({{ resultLabel }})
+    </span>
     <ng-template #noData>
       <span style="color: red">
         {{ 'Faltan datos' | translate}}
-      </span> 
+      </span>
       <div id="warning-message" *ngIf="textWarningData !== undefined;" style="color: red">
         ({{ textWarningData | translate}})
       </div>

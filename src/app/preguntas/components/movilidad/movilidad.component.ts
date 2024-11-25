@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { IonSelect } from '@ionic/angular';
 
 @Component({
   selector: 'movilidad',
@@ -6,6 +7,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./movilidad.component.scss'],
 })
 export class MovilidadComponent implements OnInit {
+  @ViewChild('distancia')
+  distanciaSelector: IonSelect;
+
   pesoCortafuego: string;
   pesoDistancia: string;
 
@@ -20,13 +24,19 @@ export class MovilidadComponent implements OnInit {
   @Output()
   onInputChange: EventEmitter<number> = new EventEmitter();
 
-
   constructor() { }
 
   ngOnInit() { }
 
   updateCortafuego(val) {
     this.pesoCortafuego = val;
+
+    if(this.pesoCortafuego === '-1'){
+      this.pesoDistancia = '3';
+      this.distanciaSelector.disabled = true;
+    }else{
+      this.distanciaSelector.disabled = false;
+    }
     this.calcularMovilidad();
   }
 
@@ -51,7 +61,7 @@ export class MovilidadComponent implements OnInit {
       }else{
         this.movilidad = parseInt(this.pesoDistancia) * parseFloat(this.pesoCortafuego)
       }
-      
+
       this.onInputChange.emit(this.movilidad);
     }
   }

@@ -8,13 +8,19 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class ResultadosComponent implements OnInit {
   @Input()
-  tituloResultado: string
+  tituloResultado: string;
 
   @Input()
-  resultado: number
+  resultado: number;
 
   @Input()
-  textWarningData: string
+  resultLabel: string;
+
+  @Input()
+  labelColor: string;
+
+  @Input()
+  textWarningData: string;
 
   constructor() { }
 

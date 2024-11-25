@@ -15,7 +15,7 @@
       </ion-label>
       <ion-select cancelText="{{'Cancelar' | translate}}"  placeholder="{{'Seleccionar un valor' | translate}}" #areasSelect [value]="areasTransitables"
         (ionChange)="updateAreasTransitables(areasSelect.value)">
-        <ion-select-option value="0">{{ 'NO' | translate}}</ion-select-option>
+        <ion-select-option value="-1">{{ 'NO' | translate}}</ion-select-option>
         <ion-select-option value="1">{{ 'Varios cortafuegos' | translate}}</ion-select-option>
         <ion-select-option value="0.8">{{ 'Un cortafuegos' | translate}}</ion-select-option>
         <ion-select-option value="0.6">{{ 'Varios senderos' | translate}}</ion-select-option>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { IonSelect } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { AppService } from 'src/app/services/app.service';
   styleUrls: ['./penetrabilidad.component.scss'],
 })
 export class PenetrabilidadComponent implements OnInit {
+  @ViewChild('distanciaVialSelect')
+  distanciaSelector: IonSelect;
 
   comportamiento: string;
   distanciaVial: string;
@@ -59,6 +62,13 @@ export class PenetrabilidadComponent implements OnInit {
 
   updateAreasTransitables(val) {
     this.areasTransitables = val;
+
+    if(this.areasTransitables === '-1'){
+      this.distanciaVial = '2';
+      this.distanciaSelector.disabled = true;
+    }else{
+      this.distanciaSelector.disabled = false;
+    }
     this.calcularPenetrabilidad();
   }
 
